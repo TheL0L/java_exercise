@@ -67,7 +67,7 @@ public class Jeep extends LandVehicle implements Motorized, iCommercial
 	
 	public String toString()
 	{
-		return super.toString() + ", Average fuel consumption: " + this.GetAvgFuel()
+		return "Jeep: " + super.toString() + ", Average fuel consumption: " + this.GetAvgFuel()
 			+ " L/km, Engine life expectancy: " + this.GetMotorLife() + " years, License type: " + this.GetCommercialUsage();
 	}
 }
