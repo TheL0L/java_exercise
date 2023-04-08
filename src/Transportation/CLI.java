@@ -35,11 +35,11 @@ public class CLI
 	}
 
 	/*
-	 * Function fills the given vehicle list with user input.
+	 * Function handles the vehicle list filling loop, managing the inputs.
 	 * 
 	 * Function handles relevant prints and inputs.
 	 * 
-	 * @param vehicles the list to be filled with entries.
+	 * @param vehicles  the list to be filled with entries.
 	 */
 	private static void AddVehicles(List<Vehicle> vehicles)
 	{
@@ -78,9 +78,11 @@ public class CLI
 	}
 	
 	/*
-	 * Returns an integer value depicting a valid user input.
+	 * Function for prompting the user to select a vehicle type from a list.
 	 * 
 	 * Function handles relevant prints and inputs.
+	 * 
+	 * @return integer value depicting a valid user input.
 	 */
 	private static int SelectType()
 	{
@@ -105,9 +107,11 @@ public class CLI
 	}
 	
 	/*
-	 * Returns a new Jeep object, created from user input.
+	 * Function for prompting the user to fill out the necessary details for a jeep creation.
 	 * 
 	 * Function handles relevant prints and inputs.
+	 * 
+	 * @return jeep object created from user input.
 	 */
 	private static Jeep CreateJeep()
 	{
