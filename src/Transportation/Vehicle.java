@@ -7,7 +7,7 @@ public abstract class Vehicle
 	private int max_seats;
 	private float total_distance;
 	
-	/*
+	/**
 	 * Constructor for class Vehicle
 	 * 
 	 * @param model_name  vehicle's model name.
@@ -22,7 +22,7 @@ public abstract class Vehicle
 		this.total_distance = 0;
 	}
 	
-	/*
+	/**
 	 * Method for moving the vehicle a certain distance.
 	 * 
 	 * @param distance  the distance to travel.
@@ -32,7 +32,7 @@ public abstract class Vehicle
 		this.total_distance += distance;
 	}
 	
-	/*
+	/**
 	 * Method for retrieving vehicle's model name.
 	 * 
 	 * @return string containing the model name.
@@ -42,7 +42,7 @@ public abstract class Vehicle
 		return this.model_name;
 	}
 	
-	/*
+	/**
 	 * Method for retrieving vehicle's top speed.
 	 * 
 	 * @return float value of the top speed.
@@ -52,7 +52,7 @@ public abstract class Vehicle
 		return this.max_speed;
 	}
 	
-	/*
+	/**
 	 * Method for retrieving vehicle's seat count.
 	 * 
 	 * @return integer value of the seats count.
@@ -62,7 +62,7 @@ public abstract class Vehicle
 		return this.max_seats;
 	}
 	
-	/*
+	/**
 	 * Method for retrieving vehicle's travel distance.
 	 * 
 	 * @return float value of the total traveled distance.
@@ -72,12 +72,13 @@ public abstract class Vehicle
 		return this.total_distance;
 	}
 	
-	/*
+	/**
 	 * Method for comparing a vehicle against other objects.
 	 * 
 	 * @param obj  the object to be compared against.
 	 * @return boolean value of the comparison.
 	 */
+	@Override
 	public boolean equals(Object obj)
 	{
 		if (!(obj instanceof Vehicle))
@@ -102,11 +103,12 @@ public abstract class Vehicle
 		return true;
 	}
 	
-	/*
+	/**
 	 * Method for converting a vehicle to a string representation.
 	 * 
 	 * @return string containing a text representation of the vehicle's details.
 	 */
+	@Override
 	public String toString()
 	{
 		return "Model: " + this.GetModelName() + ", Traveled: " + this.GetTotalDistance()
