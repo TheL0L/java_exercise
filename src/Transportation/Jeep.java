@@ -5,6 +5,14 @@ public class Jeep extends LandVehicle implements Motorized, iCommercial
 	private float fuel_consumption;
 	private float engine_life_expectancy;
 	
+	/**
+	 * Constructor for class Jeep
+	 * 
+	 * @param model_name               vehicle's model name.
+	 * @param fuel_consumption         vehicle's average fuel consumption.
+	 * @param max_speed                vehicle's top speed.
+	 * @param engine_life_expectancy   vehicle's engine life expectancy.
+	 */
 	public Jeep(String model_name, float fuel_consumption, float max_speed, float engine_life_expectancy)
 	{
 		super(model_name, max_speed, 5, 4, RoadType.Dirt);
@@ -42,6 +50,7 @@ public class Jeep extends LandVehicle implements Motorized, iCommercial
 		this.engine_life_expectancy = value;
 	}
 
+	@Override
 	public boolean equals(Object obj)
 	{
 		if (!super.equals(obj))
@@ -65,6 +74,7 @@ public class Jeep extends LandVehicle implements Motorized, iCommercial
 		return true;
 	}
 	
+	@Override
 	public String toString()
 	{
 		return "Jeep: " + super.toString() + ", Average fuel consumption: " + this.GetAvgFuel()
