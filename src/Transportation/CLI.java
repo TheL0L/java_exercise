@@ -115,11 +115,21 @@ public class CLI
 	 */
 	private static Jeep CreateJeep()
 	{
-		String model_name;
-		float fuel_consumption;
-		float max_speed;
-		float engine_life_expectancy;
+		Scanner scanner = new Scanner(System.in);
 		
+		System.out.print("Enter the model name: ");
+		String model_name = scanner.next();
+		
+		System.out.print("Enter the average fuel consumption: ");
+		float fuel_consumption = scanner.nextFloat();
+		
+		System.out.print("Enter the top speed: ");
+		float max_speed = scanner.nextFloat();
+		
+		System.out.print("Enter the engine life expectancy: ");
+		float engine_life_expectancy = scanner.nextFloat();
+		
+		scanner.close();
 		return new Jeep(model_name, fuel_consumption, max_speed, engine_life_expectancy);
 	}
 }
