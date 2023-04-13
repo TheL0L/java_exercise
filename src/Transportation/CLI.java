@@ -34,7 +34,7 @@ public class CLI
 		// 		if exists - call .move(distance) | else print error
 	}
 
-	/*
+	/**
 	 * Function handles the vehicle list filling loop, managing the inputs.
 	 * 
 	 * Function handles relevant prints and inputs.
@@ -77,7 +77,7 @@ public class CLI
 		
 	}
 	
-	/*
+	/**
 	 * Function for prompting the user to select a vehicle type from a list.
 	 * 
 	 * Function handles relevant prints and inputs.
@@ -106,7 +106,7 @@ public class CLI
 		return input;
 	}
 	
-	/*
+	/**
 	 * Function for prompting the user to fill out the necessary details for a jeep creation.
 	 * 
 	 * Function handles relevant prints and inputs.
