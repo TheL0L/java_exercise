@@ -22,6 +22,37 @@ public class CLI
 		 	4. switch flag for naval types
 		 	5. exit
 		*/
+		boolean stop_flag = false;
+		int input;
+		Scanner scanner = new Scanner(System.in);
+		
+		while (!stop_flag)
+		{
+			PrintOptions();
+			input = scanner.nextInt();
+			
+			switch (input)
+			{
+			case 1:
+				break;
+			
+			case 2:
+				break;
+			
+			case 3:
+				break;
+				
+			case 4:
+				break;
+				
+			case 5:
+				stop_flag = true;
+				break;
+				
+			default:
+				System.out.println("Error: Invalid input.");
+			}
+		}
 
 		// 1. **
 		// 		print vehicles list
@@ -32,6 +63,18 @@ public class CLI
 		// 		print vehicles list
 		// 		get input
 		// 		if exists - call .move(distance) | else print error
+	}
+	
+	/**
+	 * Function for printing the main loop options.
+	 */
+	private static void PrintOptions()
+	{
+		System.out.println("1. Buy a vehicle");
+		System.out.println("2. Test drive a vehicle");
+		System.out.println("3. Reset travel distance for all vehicles");
+		System.out.println("4. Switch naval vehicle flag");
+		System.out.println("5. Exit");
 	}
 
 	/**
