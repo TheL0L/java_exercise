@@ -62,7 +62,7 @@ public class Frigate extends NavalVehicle implements Motorized
 	public String toString()
 	{
 		return "Frigate: " + super.toString() + ", Average fuel consumption: " + this.GetAvgFuel()
-			+ " L/km, Engine life expectancy: " + this.GetMotorLife();
+			+ " L/km, Engine life expectancy: " + this.GetMotorLife() + "type of country: "+ this.GetCountry()+ "direction with wind :" +this.GetDirection();
 	}
 
 	
