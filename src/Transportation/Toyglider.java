@@ -44,7 +44,7 @@ public class Toyglider extends AerialVehicle implements NotMotorized
 	
 	public String toString()
 	{
-		return "Spyglider: " + super.toString() + ",Enrgy score : " + this.EnergyScore()
+		return "Toyglider: " + super.toString() + ",Enrgy score : " + this.EnergyScore()
 			+ " Power source:  " + this.PowerSource() + "  type of use: " + this.GetType_of_use();
 	}
 	
