@@ -47,10 +47,12 @@ public class CLI
 				
 			case 5:
 				stop_flag = true;
+				scanner.close();
 				break;
 				
 			default:
 				System.out.println("Error: Invalid input.");
+				break;
 			}
 		}
 
@@ -114,6 +116,10 @@ public class CLI
 				else {
 					System.out.println("Error: Add at least one vehicle to procced!");
 				}
+				break;
+				
+			default:
+				System.out.println("Error: Invalid input.");
 				break;
 			}
 		}
