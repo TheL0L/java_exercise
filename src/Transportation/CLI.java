@@ -34,9 +34,11 @@ public class CLI
 			switch (input)
 			{
 			case 1:
+				PrintAllVehicles(vehicles);
 				break;
 			
 			case 2:
+				PrintAllVehicles(vehicles);
 				break;
 			
 			case 3:
@@ -180,5 +182,36 @@ public class CLI
 		
 		scanner.close();
 		return new Jeep(model_name, fuel_consumption, max_speed, engine_life_expectancy);
+	}
+
+	/*
+	 * Function for printing all vehicles from a list.
+	 * 
+	 * @param vehicles the list of vehicles to be printed out.
+	 */
+	private static void PrintAllVehicles(List<Vehicle> vehicles)
+	{
+		System.out.println("Available vehicles: ( " + vehicles.size() + " )");
+		for (Vehicle vehicle : vehicles)
+		{
+			System.out.println(vehicle);
+		}
+		System.out.println();
+	}
+	
+	/*
+	 * Function for resetting travel distance of all vehicles in a list.
+	 * 
+	 * @param vehicles the list of vehicles to be reset.
+	 */
+	private static void ResetAllVehiclesTravelDistance(List<Vehicle> vehicles)
+	{
+		System.out.println("Available vehicles: ( " + vehicles.size() + " )");
+		for (Vehicle vehicle : vehicles)
+		{
+			vehicle.ResetTravelDistance();
+		}
+		System.out.println("Done.");
+		System.out.println();
 	}
 }
