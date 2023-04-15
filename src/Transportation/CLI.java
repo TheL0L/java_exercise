@@ -221,6 +221,39 @@ public class CLI
 	 */
 	private static int FindVehicle(List<Vehicle> vehicles)
 	{
+		Vehicle target;
+		
+		switch (SelectType())
+		{
+		case 1:
+			target = CreateJeep();
+			break;
+		
+		case 2:
+			target = CreateFrigate();
+			break;
+			
+		case 3:
+			target = CreateReconGlider();
+			break;
+			
+		case 4:
+			target = CreateToyGlider();
+			break;
+			
+		case 5:
+			return -1;
+			
+		default:
+			System.out.println("Error: Invalid input.");
+			return -1;
+		}
+		
+		for (int i = 0; i < vehicles.size(); i++)
+		{
+			if (vehicles.get(i).equals(target))
+				return i;
+		}
 		
 		return -1;
 	}
