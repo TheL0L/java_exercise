@@ -5,8 +5,16 @@ import java.util.Scanner;
 
 public class CLI
 {
+	private static Scanner scanner;
+	
 	public static void main(String[] args)
 	{
+		// initialize a static scanner, otherwise will have to pass it to other functions
+		// when Scanner.close() is called, the input file stream is closed
+		// thus invalidating the file itself during runtime
+		scanner = new Scanner(System.in);
+		
+		
 		// open a transportation firm
 		// add vehicles (type -> details)
 		List<Vehicle> vehicles = new ArrayList<Vehicle>();
@@ -24,7 +32,6 @@ public class CLI
 		*/
 		boolean stop_flag = false;
 		int input;
-		Scanner scanner = new Scanner(System.in);
 		
 		while (!stop_flag)
 		{
@@ -142,7 +149,6 @@ public class CLI
 		System.out.println("4. Toy Glider");
 		System.out.println("5. None (exit)");
 		
-		Scanner scanner = new Scanner(System.in);
 		int input = 0;
 		
 		do
@@ -150,7 +156,6 @@ public class CLI
 			input = scanner.nextInt();
 		} while (input < 1 || input > 5);
 		
-		scanner.close();
 		return input;
 	}
 	
@@ -163,8 +168,6 @@ public class CLI
 	 */
 	private static Jeep CreateJeep()
 	{
-		Scanner scanner = new Scanner(System.in);
-		
 		System.out.print("Enter the model name: ");
 		String model_name = scanner.next();
 		
@@ -177,7 +180,6 @@ public class CLI
 		System.out.print("Enter the engine life expectancy: ");
 		float engine_life_expectancy = scanner.nextFloat();
 		
-		scanner.close();
 		return new Jeep(model_name, fuel_consumption, max_speed, engine_life_expectancy);
 	}
 
@@ -295,12 +297,10 @@ public class CLI
 			return;
 		}
 		
-		Scanner scanner = new Scanner(System.in);
 		float distance;
 		
 		System.out.print("Please enter the test drive distance: ");
 		distance = scanner.nextFloat();
-		scanner.close();
 		
 		if (distance <= 0)
 		{
