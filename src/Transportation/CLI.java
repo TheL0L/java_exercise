@@ -140,8 +140,7 @@ public class CLI
 		System.out.println("2. Frigate");
 		System.out.println("3. Reconnaissance Glider");
 		System.out.println("4. Toy Glider");
-		System.out.println();
-		System.out.println("5. None (exit creation menu)");
+		System.out.println("5. None (exit)");
 		
 		Scanner scanner = new Scanner(System.in);
 		int input = 0;
@@ -149,7 +148,7 @@ public class CLI
 		do
 		{
 			input = scanner.nextInt();
-		} while (input > 0 && input < 6);
+		} while (input < 1 || input > 5);
 		
 		scanner.close();
 		return input;
