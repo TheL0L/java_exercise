@@ -57,6 +57,9 @@ public class CLI
 				break;
 				
 			case 4:
+				PrintAllVehicles(vehicles);
+				input = FindVehicle(vehicles);
+				ChangeVehicleFlag(vehicles, input);
 				break;
 				
 			case 5:
@@ -310,5 +313,32 @@ public class CLI
 		
 		vehicles.get(index).Move(distance);
 		System.out.println("Test drive completed.");
+	}
+	
+	/*
+	 * Function for changing a vehicle's flag.
+	 * 
+	 * @param vehicles  the list of vehicles from which a test drive is attempted.
+	 * @param index     integer value of the wanted vehicle's index in the list.
+	 */
+	private static void ChangeVehicleFlag(List<Vehicle> vehicles, int index)
+	{
+		if (index < 0)
+		{
+			System.out.println("Error: Vehicle was not found.");
+			return;
+		}
+		
+		if (!(vehicles.get(index) instanceof NavalVehicle))
+		{
+			System.out.println("Error: Vehicle is not of a naval type.");
+			return;
+		}
+		
+		System.out.print("Please enter the new flag name: ");
+		String flag = scanner.next();
+		
+		((NavalVehicle)vehicles.get(index)).SetCountry(flag);
+		System.out.println("Flag changed successfully.");
 	}
 }
