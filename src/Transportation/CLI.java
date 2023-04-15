@@ -35,13 +35,18 @@ public class CLI
 			{
 			case 1:
 				PrintAllVehicles(vehicles);
+				input = FindVehicle(vehicles);
+				BuyVehicle(vehicles, input);
 				break;
 			
 			case 2:
 				PrintAllVehicles(vehicles);
+				input = FindVehicle(vehicles);
+				TestDriveVehicle(vehicles, input);
 				break;
 			
 			case 3:
+				ResetAllVehiclesTravelDistance(vehicles);
 				break;
 				
 			case 4:
@@ -49,7 +54,6 @@ public class CLI
 				
 			case 5:
 				stop_flag = true;
-				scanner.close();
 				break;
 				
 			default:
@@ -57,16 +61,10 @@ public class CLI
 				break;
 			}
 		}
-
-		// 1. **
-		// 		print vehicles list
-		// 		get input
-		// 		if exists - remove from list | else print error
 		
-		// 2. **
-		// 		print vehicles list
-		// 		get input
-		// 		if exists - call .move(distance) | else print error
+
+		System.out.println("Goodbye.");
+		scanner.close();
 	}
 	
 	/**
@@ -213,5 +211,72 @@ public class CLI
 		}
 		System.out.println("Done.");
 		System.out.println();
+	}
+	
+	/*
+	 * Function for finding a vehicle in a list.
+	 * 
+	 * @param vehicles the list of vehicles to be searched in.
+	 * 
+	 * @return integer value of vehicle's index in the given list, -1 if doesn't exist.
+	 */
+	private static int FindVehicle(List<Vehicle> vehicles)
+	{
+		
+		return -1;
+	}
+	
+	/*
+	 * Function for buying a vehicle.
+	 * 
+	 * If given index is valid, vehicle will be removed from the list.
+	 * 
+	 * @param vehicles  the list of vehicles from which a purchase is attempted.
+	 * @param index     integer value of the wanted vehicle's index in the list.
+	 */
+	private static void BuyVehicle(List<Vehicle> vehicles, int index)
+	{
+		if (index < 0)
+		{
+			System.out.println("Error: Vehicle was not found.");
+		}
+		else
+		{
+			vehicles.remove(index);
+			System.out.println("Thank you for your purchase!");
+		}
+	}
+	
+	/*
+	 * Function for test driving a vehicle.
+	 * 
+	 * If given index is valid, vehicle will be taken on a test drive.
+	 * 
+	 * @param vehicles  the list of vehicles from which a test drive is attempted.
+	 * @param index     integer value of the wanted vehicle's index in the list.
+	 */
+	private static void TestDriveVehicle(List<Vehicle> vehicles, int index)
+	{
+		if (index < 0)
+		{
+			System.out.println("Error: Vehicle was not found.");
+			return;
+		}
+		
+		Scanner scanner = new Scanner(System.in);
+		float distance;
+		
+		System.out.print("Please enter the test drive distance: ");
+		distance = scanner.nextFloat();
+		scanner.close();
+		
+		if (distance <= 0)
+		{
+			System.out.println("Error: Value can not be non positive.");
+			return;
+		}
+		
+		vehicles.get(index).Move(distance);
+		System.out.println("Test drive completed.");
 	}
 }
