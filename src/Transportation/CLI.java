@@ -105,19 +105,19 @@ public class CLI
 			switch (SelectType())
 			{
 			case 1:
-				CreateJeep();
+				vehicles.add(CreateJeep());
 				break;
 			
 			case 2:
-				CreateFrigate();
+				vehicles.add(CreateFrigate());
 				break;
 				
 			case 3:
-				CreateReconGlider();
+				vehicles.add(CreateReconGlider());
 				break;
 				
 			case 4:
-				CreateToyGlider();
+				vehicles.add(CreateToyGlider());
 				break;
 				
 			case 5:
@@ -340,5 +340,65 @@ public class CLI
 		
 		((NavalVehicle)vehicles.get(index)).SetCountry(flag);
 		System.out.println("Flag changed successfully.");
+	}
+	
+	/**
+	 * Function for prompting the user to fill out the necessary details for a frigate creation.
+	 * 
+	 * Function handles relevant prints and inputs.
+	 * 
+	 * @return frigate object created from user input.
+	 */
+	private static Frigate CreateFrigate()
+	{
+		System.out.print("Enter the model name: ");
+		String model_name = scanner.next();
+		
+		System.out.print("Enter the top speed: ");
+		float max_speed = scanner.nextFloat();
+		
+		System.out.print("Enter the max seats count: ");
+		float max_seats = scanner.nextInt();
+		
+		System.out.print("Enter if sailing with wind: [ 0 | 1 ]  ");
+		boolean swimming_with_wind = scanner.nextInt() == 1 ? true : false;
+		
+		return new Frigate(model_name, max_speed, max_seats, swimming_with_wind);
+	}
+	
+	/**
+	 * Function for prompting the user to fill out the necessary details for a spyglider creation.
+	 * 
+	 * Function handles relevant prints and inputs.
+	 * 
+	 * @return spyglider object created from user input.
+	 */
+	private static Spyglider CreateReconGlider()
+	{
+		System.out.print("Enter the model name: ");
+		String model_name = scanner.next();
+		
+		System.out.print("Enter the top speed: ");
+		float max_speed = scanner.nextFloat();
+		
+		return new Spyglider(model_name, max_speed);
+	}
+	
+	/**
+	 * Function for prompting the user to fill out the necessary details for a toyglider creation.
+	 * 
+	 * Function handles relevant prints and inputs.
+	 * 
+	 * @return toyglider object created from user input.
+	 */
+	private static Toyglider CreateToyGlider()
+	{
+		System.out.print("Enter the model name: ");
+		String model_name = scanner.next();
+		
+		System.out.print("Enter the top speed: ");
+		float max_speed = scanner.nextFloat();
+		
+		return new Toyglider(model_name, max_speed);
 	}
 }
