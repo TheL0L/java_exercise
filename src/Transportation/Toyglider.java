@@ -25,20 +25,11 @@ public class Toyglider extends AerialVehicle implements NotMotorized
 		{
 			return false; 
 		}
-		if(!(obj instanceof Spyglider))
+		if(!(obj instanceof Toyglider))
 		{
 			return false; 
 		}
 		
-		Toyglider other = (Toyglider)obj;
-		if(this.energyScore!= other.energyScore)
-		{
-			return false;
-		}
-		if(this.powerSource != other.powerSource)
-		{
-			return false;
-		}
 		return true;
 	}
 	
