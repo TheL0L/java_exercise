@@ -5,7 +5,7 @@ public class Toyglider extends AerialVehicle implements NotMotorized
 	private char energyScore;
 	private String powerSource;
 	
-	public Toyglider(String model_name,float max_speed,int max_seats,Type_of_use type,char energyScore )
+	public Toyglider()
 	{
 		super("Toy",10,0,Type_of_use.civilian);
 		this.energyScore = 'A';
