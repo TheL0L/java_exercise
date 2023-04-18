@@ -6,17 +6,17 @@ public class Spyglider extends AerialVehicle implements NotMotorized
 	private String powerSource;
 	
 	
-	public Spyglider(String model_name,float max_speed,int max_seats,Type_of_use type,char energyScore,String poewrSource )
+	public Spyglider(String powerSource)
 	{
 		super("privileged",50,1,Type_of_use.military);
 		this.energyScore = 'C';
-		this.powerSource = poewrSource;
+		this.powerSource = powerSource;
 	}
-	public char EnergyScore()
+	public char GetEnergyScore()
 	{
 		return this.energyScore;
 	}
-	public String PowerSource()
+	public String GetPowerSource()
 	{
 		return this.powerSource;
 	}
@@ -32,10 +32,7 @@ public class Spyglider extends AerialVehicle implements NotMotorized
 		}
 		
 		Spyglider other = (Spyglider)obj;
-		if(this.energyScore!= other.energyScore)
-		{
-			return false;
-		}
+		
 		if(this.powerSource != other.powerSource)
 		{
 			return false;

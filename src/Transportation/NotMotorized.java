@@ -2,7 +2,7 @@ package Transportation;
 
 public interface NotMotorized
 {
-	public String PowerSource();
-	public char EnergyScore();
+	public String GetPowerSource();
+	public char GetEnergyScore();
 }
 
