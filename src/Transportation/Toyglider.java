@@ -11,11 +11,11 @@ public class Toyglider extends AerialVehicle implements NotMotorized
 		this.energyScore = 'A';
 		this.powerSource = "manual";
 	}
-	public char EnergyScore()
+	public char GetEnergyScore()
 	{
 		return this.energyScore;
 	}
-	public String PowerSource()
+	public String GetPowerSource()
 	{
 		return this.powerSource;
 	}
