@@ -32,10 +32,7 @@ public class Spyglider extends AerialVehicle implements NotMotorized
 		}
 		
 		Spyglider other = (Spyglider)obj;
-		if(this.energyScore!= other.energyScore)
-		{
-			return false;
-		}
+		
 		if(this.powerSource != other.powerSource)
 		{
 			return false;
