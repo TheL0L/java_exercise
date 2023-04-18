@@ -5,7 +5,10 @@ public class Spyglider extends AerialVehicle implements NotMotorized
 	private char energyScore;
 	private String powerSource;
 	
-	
+	/**
+	 * constructor for Spy glider class.
+	 * @param powerSource vehicle's power source.
+	 */
 	public Spyglider(String powerSource)
 	{
 		super("privileged",50,1,Type_of_use.military);
