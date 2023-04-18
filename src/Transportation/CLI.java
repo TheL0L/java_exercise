@@ -358,7 +358,7 @@ public class CLI
 		float max_speed = scanner.nextFloat();
 		
 		System.out.print("Enter the max seats count: ");
-		float max_seats = scanner.nextInt();
+		int max_seats = scanner.nextInt();
 		
 		System.out.print("Enter if sailing with wind: [ 0 | 1 ]  ");
 		boolean swimming_with_wind = scanner.nextInt() == 1 ? true : false;
@@ -375,13 +375,10 @@ public class CLI
 	 */
 	private static Spyglider CreateReconGlider()
 	{
-		System.out.print("Enter the model name: ");
-		String model_name = scanner.next();
+		System.out.print("Enter the power source: ");
+		String power_source = scanner.next();
 		
-		System.out.print("Enter the top speed: ");
-		float max_speed = scanner.nextFloat();
-		
-		return new Spyglider(model_name, max_speed);
+		return new Spyglider(power_source);
 	}
 	
 	/**
@@ -393,12 +390,6 @@ public class CLI
 	 */
 	private static Toyglider CreateToyGlider()
 	{
-		System.out.print("Enter the model name: ");
-		String model_name = scanner.next();
-		
-		System.out.print("Enter the top speed: ");
-		float max_speed = scanner.nextFloat();
-		
-		return new Toyglider(model_name, max_speed);
+		return new Toyglider();
 	}
 }
