@@ -22,11 +22,11 @@ public class Frigate extends NavalVehicle implements Motorized
 	
 	public void SetMotorLife(float value)
 	{
-		this.engine_life_expectancy *= value;
+		this.engine_life_expectancy = value;
 	}
 	public void SetAvgFuel(float value)
 	{
-		this.fuel_consumption /=value; 
+		this.fuel_consumption = value; 
 	}
 	public float GetAvgFuel()
 	{
