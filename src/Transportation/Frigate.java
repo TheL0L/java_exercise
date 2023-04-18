@@ -47,12 +47,12 @@ public class Frigate extends NavalVehicle implements Motorized
 			return false;
 		}
 		Frigate other = (Frigate)obj;
-		if(this.engine_life_expectancy!= other.engine_life_expectancy)
+		if(this.engine_life_expectancy != other.engine_life_expectancy)
 		{
 			return false;
 			
 		}
-		if(this.fuel_consumption!=other.engine_life_expectancy)
+		if(this.fuel_consumption != other.fuel_consumption)
 		{
 			return false;
 		}
