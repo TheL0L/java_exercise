@@ -13,7 +13,7 @@ public class Frigate extends NavalVehicle implements Motorized
 	 * @param engine_life_expectancy   vehicle's engine life expectancy.
 	 */
 	
-	public Frigate(String model_name, float max_speed, int max_seats,boolean swimming_with_wind,String Country)
+	public Frigate(String model_name, float max_speed, int max_seats,boolean swimming_with_wind)
 	{
 		super(model_name,max_speed,max_seats,swimming_with_wind,"israel");
 		this.fuel_consumption = 500;
