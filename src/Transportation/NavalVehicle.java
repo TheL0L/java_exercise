@@ -18,7 +18,7 @@ public abstract class NavalVehicle extends Vehicle
 		this.swimming_with_wind = swimming_with_wind;
 	
 	}
-	public void SetCountry(boolean swimming_with_wind)
+	public void SetCountry(String Country)
 	{
 		this.Country = Country;
 	
