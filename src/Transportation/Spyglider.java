@@ -12,11 +12,11 @@ public class Spyglider extends AerialVehicle implements NotMotorized
 		this.energyScore = 'C';
 		this.powerSource = powerSource;
 	}
-	public char EnergyScore()
+	public char GetEnergyScore()
 	{
 		return this.energyScore;
 	}
-	public String PowerSource()
+	public String GetPowerSource()
 	{
 		return this.powerSource;
 	}
