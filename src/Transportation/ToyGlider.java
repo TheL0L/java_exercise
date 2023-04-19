@@ -2,8 +2,8 @@ package Transportation;
 
 public class ToyGlider extends AerialVehicle implements iNonMotorized
 {
-	private char energyScore;
-	private String powerSource;
+	private char energy_score;
+	private String power_source;
 	
 	/**
 	 * constructor for ToyGlider class.
@@ -11,20 +11,20 @@ public class ToyGlider extends AerialVehicle implements iNonMotorized
 	public ToyGlider()
 	{
 		super("Toy", 10, 0, Usage.civilian);
-		this.energyScore = 'A';
-		this.powerSource = "manual";
+		this.energy_score = 'A';
+		this.power_source = "manual";
 	}
 	
 	@Override
 	public char GetEnergyScore()
 	{
-		return this.energyScore;
+		return this.energy_score;
 	}
 	
 	@Override
 	public String GetPowerSource()
 	{
-		return this.powerSource;
+		return this.power_source;
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class ToyGlider extends AerialVehicle implements iNonMotorized
 	@Override
 	public String toString()
 	{
-		return "Toyglider: " + super.toString() + ",Enrgy score : " + this.GetEnergyScore()
-			+ " Power source:  " + this.GetPowerSource() + "  type of use: " + this.GetUsage();
+		return "ToyGlider: " + super.toString() + ", Enrgy score: " + this.GetEnergyScore()
+			+ " Power source: " + this.GetPowerSource();
 	}
 }
