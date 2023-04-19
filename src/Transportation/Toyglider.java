@@ -1,11 +1,11 @@
 package Transportation;
 
-public class Toyglider extends AerialVehicle implements iNonMotorized
+public class ToyGlider extends AerialVehicle implements iNonMotorized
 {
 	private char energyScore;
 	private String powerSource;
 	
-	public Toyglider()
+	public ToyGlider()
 	{
 		super("Toy", 10, 0, Type_of_use.civilian);
 		this.energyScore = 'A';
@@ -31,7 +31,7 @@ public class Toyglider extends AerialVehicle implements iNonMotorized
 		{
 			return false; 
 		}
-		if(!(obj instanceof Toyglider))
+		if(!(obj instanceof ToyGlider))
 		{
 			return false; 
 		}

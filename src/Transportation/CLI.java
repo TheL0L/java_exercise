@@ -373,12 +373,12 @@ public class CLI
 	 * 
 	 * @return spyglider object created from user input.
 	 */
-	private static Spyglider CreateReconGlider()
+	private static SpyGlider CreateReconGlider()
 	{
 		System.out.print("Enter the power source: ");
 		String power_source = scanner.next();
 		
-		return new Spyglider(power_source);
+		return new SpyGlider(power_source);
 	}
 	
 	/**
@@ -388,8 +388,8 @@ public class CLI
 	 * 
 	 * @return toyglider object created from user input.
 	 */
-	private static Toyglider CreateToyGlider()
+	private static ToyGlider CreateToyGlider()
 	{
-		return new Toyglider();
+		return new ToyGlider();
 	}
 }

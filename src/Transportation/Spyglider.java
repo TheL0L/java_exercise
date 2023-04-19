@@ -1,15 +1,15 @@
 package Transportation;
 
-public class Spyglider extends AerialVehicle implements iNonMotorized
+public class SpyGlider extends AerialVehicle implements iNonMotorized
 {
 	private char energyScore;
 	private String powerSource;
 	
 	/**
-	 * constructor for Spyglider class.
+	 * constructor for SpyGlider class.
 	 * @param powerSource vehicle's power source.
 	 */
-	public Spyglider(String powerSource)
+	public SpyGlider(String powerSource)
 	{
 		super("privileged", 50, 1, Type_of_use.military);
 		this.energyScore = 'C';
@@ -35,12 +35,12 @@ public class Spyglider extends AerialVehicle implements iNonMotorized
 		{
 			return false; 
 		}
-		if(!(obj instanceof Spyglider))
+		if(!(obj instanceof SpyGlider))
 		{
 			return false; 
 		}
 		
-		Spyglider other = (Spyglider)obj;
+		SpyGlider other = (SpyGlider)obj;
 		
 		if(this.powerSource != other.powerSource)
 		{
