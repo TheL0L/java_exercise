@@ -1,6 +1,6 @@
 package Transportation;
 
-public class Spyglider extends AerialVehicle implements NotMotorized
+public class Spyglider extends AerialVehicle implements iNonMotorized
 {
 	private char energyScore;
 	private String powerSource;

@@ -1,6 +1,6 @@
 package Transportation;
 
-public class Frigate extends NavalVehicle implements Motorized
+public class Frigate extends NavalVehicle implements iMotorized
 {
 	private float fuel_consumption;
 	private float engine_life_expectancy;

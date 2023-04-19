@@ -1,6 +1,6 @@
 package Transportation;
 
-public class Jeep extends LandVehicle implements Motorized, iCommercial
+public class Jeep extends LandVehicle implements iMotorized, iCommercial
 {
 	private float fuel_consumption;
 	private float engine_life_expectancy;

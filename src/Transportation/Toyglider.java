@@ -1,6 +1,6 @@
 package Transportation;
 
-public class Toyglider extends AerialVehicle implements NotMotorized
+public class Toyglider extends AerialVehicle implements iNonMotorized
 {
 	private char energyScore;
 	private String powerSource;
