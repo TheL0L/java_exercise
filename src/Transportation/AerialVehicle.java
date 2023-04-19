@@ -65,6 +65,6 @@ public abstract class AerialVehicle extends Vehicle
 	@Override
 	public String toString()
 	{
-		return super.toString() + " Usage : " + this.GetUsage();
+		return super.toString() + ", Usage: " + this.GetUsage();
 	}
 }

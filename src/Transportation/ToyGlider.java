@@ -46,6 +46,6 @@ public class ToyGlider extends AerialVehicle implements iNonMotorized
 	public String toString()
 	{
 		return "ToyGlider: " + super.toString() + ", Enrgy score: " + this.GetEnergyScore()
-			+ " Power source: " + this.GetPowerSource();
+			+ ", Power source: " + this.GetPowerSource();
 	}
 }
