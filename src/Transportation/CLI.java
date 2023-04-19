@@ -186,7 +186,7 @@ public class CLI
 		return new Jeep(model_name, fuel_consumption, max_speed, engine_life_expectancy);
 	}
 
-	/*
+	/**
 	 * Function for printing all vehicles from a list.
 	 * 
 	 * @param vehicles the list of vehicles to be printed out.
@@ -201,7 +201,7 @@ public class CLI
 		System.out.println();
 	}
 	
-	/*
+	/**
 	 * Function for resetting travel distance of all vehicles in a list.
 	 * 
 	 * @param vehicles the list of vehicles to be reset.
@@ -217,7 +217,7 @@ public class CLI
 		System.out.println();
 	}
 	
-	/*
+	/**
 	 * Function for finding a vehicle in a list.
 	 * 
 	 * @param vehicles the list of vehicles to be searched in.
@@ -263,7 +263,7 @@ public class CLI
 		return -1;
 	}
 	
-	/*
+	/**
 	 * Function for buying a vehicle.
 	 * 
 	 * If given index is valid, vehicle will be removed from the list.
@@ -284,7 +284,7 @@ public class CLI
 		}
 	}
 	
-	/*
+	/**
 	 * Function for test driving a vehicle.
 	 * 
 	 * If given index is valid, vehicle will be taken on a test drive.
@@ -315,7 +315,7 @@ public class CLI
 		System.out.println("Test drive completed.");
 	}
 	
-	/*
+	/**
 	 * Function for changing a vehicle's flag.
 	 * 
 	 * @param vehicles  the list of vehicles from which a test drive is attempted.

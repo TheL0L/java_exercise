@@ -115,7 +115,7 @@ public abstract class Vehicle
 			+ " km, Max speed: " + this.GetMaxSpeed() + " km/h, Seats: " + this.GetMaxSeats();
 	}
 	
-	/*
+	/**
 	 * Method for reseting the vehicle's travel distance.
 	 */
 	public void ResetTravelDistance()
