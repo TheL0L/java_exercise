@@ -6,26 +6,29 @@ public class Spyglider extends AerialVehicle implements NotMotorized
 	private String powerSource;
 	
 	/**
-	 * constructor for Spy glider class.
+	 * constructor for Spyglider class.
 	 * @param powerSource vehicle's power source.
 	 */
 	public Spyglider(String powerSource)
 	{
-		super("privileged",50,1,Type_of_use.military);
+		super("privileged", 50, 1, Type_of_use.military);
 		this.energyScore = 'C';
 		this.powerSource = powerSource;
 	}
 	
+	@Override
 	public char GetEnergyScore()
 	{
 		return this.energyScore;
 	}
 	
+	@Override
 	public String GetPowerSource()
 	{
 		return this.powerSource;
 	}
 	
+	@Override
 	public boolean equals(Object obj)
 	{
 		if(!super.equals(obj))
@@ -46,9 +49,10 @@ public class Spyglider extends AerialVehicle implements NotMotorized
 		return true;
 	}
 	
+	@Override
 	public String toString()
 	{
 		return "Spyglider: " + super.toString() + ",Enrgy score : " + this.GetEnergyScore()
-			+ " Power source:  " + this.GetPowerSource() + "  type of use: " + this.GetType_of_use();
+			+ " Power source:  " + this.GetPowerSource() + "  type of use: " + this.GetTypeOfUse();
 	}
 }

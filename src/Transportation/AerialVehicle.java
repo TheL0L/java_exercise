@@ -1,12 +1,9 @@
 package Transportation;
 
-
 public abstract class AerialVehicle extends Vehicle
 {
 	/**
-	 * 
 	 * Available types of use
-	 *
 	 */
 	public static enum Type_of_use { military, civilian };
 	
@@ -20,30 +17,31 @@ public abstract class AerialVehicle extends Vehicle
 	 * @param max_seats	 vehicle's seat count.		
 	 * @param type       vehicle's type of use.  
 	 */
-	
-	public AerialVehicle(String model_name, float max_speed, int max_seats,Type_of_use type )
+	public AerialVehicle(String model_name, float max_speed, int max_seats, Type_of_use type)
 	{
-		super(model_name,max_speed,max_seats);
+		super(model_name, max_speed, max_seats);
 		this.type = type;
-		
 	}
+
 	/**
 	 * method for update the vehicle usage type.
 	 * @param type  vehicle's type of use.
 	 */
-	public void Set(Type_of_use type)
+	public void SetTypeOfUse(Type_of_use type)
 	{
 		this.type = type;
-	
 	}
+
 	/**
 	 * method retrieving vehicle's intended type of use.
 	 * @return string containing the intended type of use.
 	 */
-	public String GetType_of_use()
+	public String GetTypeOfUse()
 	{
 		return this.type.name();
 	}
+
+	@Override
 	public boolean equals(Object obj)
 	{
 		if(!super.equals(obj))
@@ -62,11 +60,11 @@ public abstract class AerialVehicle extends Vehicle
 		}
 		
 		return true;
-		
 	}
 	
+	@Override
 	public String toString()
 	{
-		return super.toString() + "type of use : "+this.GetType_of_use();
+		return super.toString() + "type of use : " + this.GetTypeOfUse();
 	}
 }
