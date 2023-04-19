@@ -11,7 +11,7 @@ public class SpyGlider extends AerialVehicle implements iNonMotorized
 	 */
 	public SpyGlider(String powerSource)
 	{
-		super("privileged", 50, 1, Usage.military);
+		super("classified", 50, 1, Usage.military);
 		this.energyScore = 'C';
 		this.powerSource = powerSource;
 	}
