@@ -85,6 +85,6 @@ public abstract class NavalVehicle extends Vehicle
 	@Override
 	public String toString()
 	{
-		return super.toString() + "type of country : " + this.GetCountry() + "direction with wind: " + this.GetDirection();
+		return super.toString() + ", Country : " + this.GetCountry() + ", Moves with wind's direction: " + this.GetDirection();
 	}
 }
