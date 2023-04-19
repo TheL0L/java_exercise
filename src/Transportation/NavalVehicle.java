@@ -28,7 +28,6 @@ public abstract class NavalVehicle extends Vehicle
 	public void SetDirection(boolean swimming_with_wind)
 	{
 		this.swimming_with_wind = swimming_with_wind;
-	
 	}
 
 	/**
@@ -38,7 +37,6 @@ public abstract class NavalVehicle extends Vehicle
 	public void SetCountry(String Country)
 	{
 		this.Country = Country;
-	
 	}
 
 	/**
@@ -87,6 +85,6 @@ public abstract class NavalVehicle extends Vehicle
 	@Override
 	public String toString()
 	{
-		return super.toString() + "type of country : "+ this.GetCountry()+ "direction with wind: "+this.GetDirection();
+		return super.toString() + "type of country : " + this.GetCountry() + "direction with wind: " + this.GetDirection();
 	}
 }
