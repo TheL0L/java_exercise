@@ -5,6 +5,9 @@ public class ToyGlider extends AerialVehicle implements iNonMotorized
 	private char energyScore;
 	private String powerSource;
 	
+	/**
+	 * constructor for ToyGlider class.
+	 */
 	public ToyGlider()
 	{
 		super("Toy", 10, 0, Type_of_use.civilian);
