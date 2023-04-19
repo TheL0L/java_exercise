@@ -2,30 +2,30 @@ package Transportation;
 
 public class SpyGlider extends AerialVehicle implements iNonMotorized
 {
-	private char energyScore;
-	private String powerSource;
+	private char energy_score;
+	private String power_source;
 	
 	/**
 	 * constructor for SpyGlider class.
-	 * @param powerSource vehicle's power source.
+	 * @param power_source vehicle's power source.
 	 */
-	public SpyGlider(String powerSource)
+	public SpyGlider(String power_source)
 	{
 		super("classified", 50, 1, Usage.military);
-		this.energyScore = 'C';
-		this.powerSource = powerSource;
+		this.energy_score = 'C';
+		this.power_source = power_source;
 	}
 	
 	@Override
 	public char GetEnergyScore()
 	{
-		return this.energyScore;
+		return this.energy_score;
 	}
 	
 	@Override
 	public String GetPowerSource()
 	{
-		return this.powerSource;
+		return this.power_source;
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class SpyGlider extends AerialVehicle implements iNonMotorized
 		
 		SpyGlider other = (SpyGlider)obj;
 		
-		if(this.powerSource != other.powerSource)
+		if(this.power_source != other.power_source)
 		{
 			return false;
 		}
@@ -52,7 +52,7 @@ public class SpyGlider extends AerialVehicle implements iNonMotorized
 	@Override
 	public String toString()
 	{
-		return "Spyglider: " + super.toString() + ",Enrgy score : " + this.GetEnergyScore()
-			+ " Power source:  " + this.GetPowerSource() + "  type of use: " + this.GetUsage();
+		return "SpyGlider: " + super.toString() + ", Energy score: " + this.GetEnergyScore()
+			+ ", Power source: " + this.GetPowerSource();
 	}
 }
