@@ -10,7 +10,7 @@ public class ToyGlider extends AerialVehicle implements iNonMotorized
 	 */
 	public ToyGlider()
 	{
-		super("Toy", 10, 0, Type_of_use.civilian);
+		super("Toy", 10, 0, Usage.civilian);
 		this.energyScore = 'A';
 		this.powerSource = "manual";
 	}
@@ -46,6 +46,6 @@ public class ToyGlider extends AerialVehicle implements iNonMotorized
 	public String toString()
 	{
 		return "Toyglider: " + super.toString() + ",Enrgy score : " + this.GetEnergyScore()
-			+ " Power source:  " + this.GetPowerSource() + "  type of use: " + this.GetTypeOfUse();
+			+ " Power source:  " + this.GetPowerSource() + "  type of use: " + this.GetUsage();
 	}
 }

@@ -3,42 +3,42 @@ package Transportation;
 public abstract class AerialVehicle extends Vehicle
 {
 	/**
-	 * Available types of use
+	 * Available usages
 	 */
-	public static enum Type_of_use { military, civilian };
+	public static enum Usage { military, civilian };
 	
-	private Type_of_use type;
+	private Usage usage;
 	
 	/**
 	 * constructor for  class AreialVehicle  
 	 * 
 	 * @param model_name vehicle's model name.
 	 * @param max_speed  vehicle's top speed.
-	 * @param max_seats	 vehicle's seat count.		
-	 * @param type       vehicle's type of use.  
+	 * @param max_seats	 vehicle's seat count.
+	 * @param usage      vehicle's usage.
 	 */
-	public AerialVehicle(String model_name, float max_speed, int max_seats, Type_of_use type)
+	public AerialVehicle(String model_name, float max_speed, int max_seats, Usage usage)
 	{
 		super(model_name, max_speed, max_seats);
-		this.type = type;
+		this.usage = usage;
 	}
 
 	/**
 	 * method for update the vehicle usage type.
-	 * @param type  vehicle's type of use.
+	 * @param usage  vehicle's usage.
 	 */
-	public void SetTypeOfUse(Type_of_use type)
+	public void SetUsage(Usage usage)
 	{
-		this.type = type;
+		this.usage = usage;
 	}
 
 	/**
-	 * method retrieving vehicle's intended type of use.
-	 * @return string containing the intended type of use.
+	 * method retrieving vehicle's intended usage.
+	 * @return string containing the intended usage.
 	 */
-	public String GetTypeOfUse()
+	public String GetUsage()
 	{
-		return this.type.name();
+		return this.usage.name();
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public abstract class AerialVehicle extends Vehicle
 		}
 		
 		AerialVehicle Other = (AerialVehicle)obj;
-		if (this.type != Other.type)
+		if (this.usage != Other.usage)
 		{
 			return false;
 		}
@@ -65,6 +65,6 @@ public abstract class AerialVehicle extends Vehicle
 	@Override
 	public String toString()
 	{
-		return super.toString() + "type of use : " + this.GetTypeOfUse();
+		return super.toString() + " Usage : " + this.GetUsage();
 	}
 }
