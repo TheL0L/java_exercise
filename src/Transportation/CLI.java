@@ -14,6 +14,9 @@ public class CLI
 		// thus invalidating the file itself during runtime
 		scanner = new Scanner(System.in);
 		
+		System.out.println("Welcome to our TransportationService!");
+		System.out.println("Please add at least a single vehicle to continue...");
+		System.out.println();
 		
 		// open a transportation firm
 		// add vehicles (type -> details)
@@ -33,9 +36,14 @@ public class CLI
 		boolean stop_flag = false;
 		int input;
 		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		
 		while (!stop_flag)
 		{
+			System.out.println();
+			System.out.println("Main Menu:");
 			PrintOptions();
+			System.out.print(" >> ");
 			input = scanner.nextInt();
 			
 			switch (input)
@@ -132,8 +140,8 @@ public class CLI
 				System.out.println("Error: Invalid input.");
 				break;
 			}
+			System.out.println();
 		}
-		
 	}
 	
 	/**
@@ -151,7 +159,7 @@ public class CLI
 		System.out.println("3. Reconnaissance Glider");
 		System.out.println("4. Toy Glider");
 		System.out.println("5. None (exit)");
-		
+		System.out.print(" >> ");
 		int input = 0;
 		
 		do
