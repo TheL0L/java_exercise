@@ -232,18 +232,28 @@ public class CLI
 		{
 		case 1:
 			target = CreateJeep();
+			System.out.print("Enter the travel distance: ");
+			((Jeep)target).Move(scanner.nextFloat());
 			break;
 		
 		case 2:
 			target = CreateFrigate();
+			System.out.print("Enter the travel distance: ");
+			((Frigate)target).Move(scanner.nextFloat());
+			System.out.print("Enter the flag name: ");
+			((Frigate)target).SetCountry(scanner.next());
 			break;
 			
 		case 3:
 			target = CreateReconGlider();
+			System.out.print("Enter the travel distance: ");
+			((SpyGlider)target).Move(scanner.nextFloat());
 			break;
 			
 		case 4:
 			target = CreateToyGlider();
+			System.out.print("Enter the travel distance: ");
+			((ToyGlider)target).Move(scanner.nextFloat());
 			break;
 			
 		case 5:
