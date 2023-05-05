@@ -1,22 +1,23 @@
 package graphics;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Label;
-import java.awt.Panel;
 
 import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 
-public class GuiElement extends Panel
+public class GuiElement extends JPanel
 {
 	private JComponent component;
 	
 	public GuiElement(String label_string, JComponent component)
 	{
-		super(new FlowLayout(FlowLayout.CENTER));
+		super(new BorderLayout());
 		this.component = component;
 		
-		this.add(new Label(label_string));
-		this.add(this.component);
+		this.add(new JLabel(label_string), BorderLayout.WEST);
+		this.add(this.component, BorderLayout.EAST);
 	}
 	
 	public JComponent GetComponent()
