@@ -7,43 +7,54 @@ public class AmphibiousVehicle extends Vehicle implements iMotorized
 	private final LandVehicle land_vehicle;
 	private final NavalVehicle naval_vehicle;
 	
-	public AmphibiousVehicle(String model_name, float max_speed, int max_seats, int wheels_count, boolean swimming_with_wind, String country)
+	private float fuel_consumption;
+	private float engine_life_expectancy;
+	
+	/**
+	 * constructor for  class AmphibiousVehicle  
+	 * 
+	 * @param model_name          vehicle's model name.
+	 * @param max_speed           vehicle's top speed.
+	 * @param max_seats	          vehicle's seat count.
+	 * @param wheels_count        vehicle's wheel count.
+	 * @param swimming_with_wind  vehicle's direction.
+	 * @param country             vehicle's country flag name.
+	 * @param fuel_consumption    vehicle's average fuel consumption.
+	 * @param engine_life_expectancy  vehicle engine's life expectancy.
+	 */
+	public AmphibiousVehicle(String model_name, float max_speed, int max_seats, int wheels_count,
+			boolean swimming_with_wind, String country, float fuel_consumption, float engine_life_expectancy)
 	{
 		super(model_name, max_speed, max_seats);
 		
-		// TODO: fix this part
-		// the issue is, that both classes are abstract...
-		// should ask the prof. about the instructions on the previous part, probably got them wrong.
-		land_vehicle = new LandVehicle(model_name, max_speed, max_seats, wheels_count, RoadType.Asphalt);
-		naval_vehicle = new NavalVehicle(model_name, max_speed, max_seats, swimming_with_wind, country);
+		this.land_vehicle = new LandVehicle(model_name, max_speed, max_seats, wheels_count, RoadType.Asphalt) {};
+		this.naval_vehicle = new NavalVehicle(model_name, max_speed, max_seats, swimming_with_wind, country) {};
+		this.fuel_consumption = fuel_consumption;
+		this.engine_life_expectancy = engine_life_expectancy;
 	}
 
 	@Override
 	public float GetAvgFuel()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return this.fuel_consumption;
 	}
 
 	@Override
 	public float GetMotorLife()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return this.engine_life_expectancy;
 	}
 
 	@Override
 	public void SetAvgFuel(float value)
 	{
-		// TODO Auto-generated method stub
-		
+		this.fuel_consumption = value;
 	}
 
 	@Override
 	public void SetMotorLife(float value)
 	{
-		// TODO Auto-generated method stub
-		
+		this.engine_life_expectancy = value;
 	}
 	
 	/**
@@ -116,13 +127,17 @@ public class AmphibiousVehicle extends Vehicle implements iMotorized
 		
 		AmphibiousVehicle other = (AmphibiousVehicle)obj;
 		
-		if (this.GetWheelsCount() != other.GetWheelsCount())
+		if (this.land_vehicle != other.land_vehicle)
 			return false;
 		
-		if (this.GetRoadType() != other.GetRoadType())
+		if (this.naval_vehicle != other.naval_vehicle)
 			return false;
 		
-		// TODO: add more stuff
+		if (this.fuel_consumption != other.fuel_consumption)
+			return false;
+		
+		if (this.engine_life_expectancy != other.engine_life_expectancy)
+			return false;
 		
 		return true;
 	}
@@ -130,7 +145,10 @@ public class AmphibiousVehicle extends Vehicle implements iMotorized
 	@Override
 	public String toString()
 	{
-		// TODO: replace the return value, super refers to Vehicle...
-		return super.toString() + ", Wheels count: " + this.GetWheelsCount() + ", Road type: " + this.GetRoadType();
+		return "Amphibious: " + super.toString()
+			+ ", Wheels count: " + this.GetWheelsCount() + ", Road type: " + this.GetRoadType()
+			+ ", Country : " + this.GetCountry() + ", Moves with wind's direction: " + this.GetDirection()
+			+ ", Average fuel consumption: " + this.GetAvgFuel() + " L/km, Engine life expectancy: "
+			+ this.GetMotorLife() + " years";
 	}
 }
