@@ -19,6 +19,7 @@ public class ImagesContainer extends JPanel
 	private int images_height;
 	
 	private int selected_id;
+	private boolean selection_enabled;
 	
 	/**
 	 * Constructor class for ImagesContainer.
@@ -28,8 +29,9 @@ public class ImagesContainer extends JPanel
 	 * @param images_width      integer value for the width of all contained images.
 	 * @param images_height     integer value for the height of all contained images.
 	 * @param has_custom_image  boolean value dictating whether the user should be able to pick a custom image.
+	 * @param selection_enabled boolean value dictating whether the container allows the image selection mechanic.
 	 */
-	public ImagesContainer(int rows, int columns, int images_width, int images_height, boolean has_custom_image)
+	public ImagesContainer(int rows, int columns, int images_width, int images_height, boolean has_custom_image, boolean selection_enabled)
 	{
         this.setLayout(new GridLayout(rows, columns, 15, 15));
         
@@ -37,6 +39,7 @@ public class ImagesContainer extends JPanel
         this.images_height = images_height;
         
         this.selected_id = -1;
+        this.selection_enabled = selection_enabled;
         
         this.images = new Vector<ImageButton>();
         
@@ -116,13 +119,16 @@ public class ImagesContainer extends JPanel
 	 */
 	public void SetSelected(ImageButton image_reference)
 	{
-		int id = this.images.indexOf(image_reference);
-		
-		if (id != -1)
+		if (this.selection_enabled == false)
 		{
-			this.ClearSelection();
-			this.selected_id = id;
-			this.images.get(id).setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			int id = this.images.indexOf(image_reference);
+			
+			if (id != -1)
+			{
+				this.ClearSelection();
+				this.selected_id = id;
+				this.images.get(id).setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			}
 		}
 	}
 }

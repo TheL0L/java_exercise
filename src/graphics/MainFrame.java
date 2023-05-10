@@ -18,7 +18,7 @@ public class MainFrame extends JFrame
 		
 		AgencyManager agm = AgencyManager.GetInstance();
 		int vehicles = agm.GetVehiclesCount();
-		ImagesContainer images_container = new ImagesContainer(0, 4, 125, 125, false);
+		ImagesContainer images_container = new ImagesContainer(0, 4, 125, 125, false, false);
 		for (int i = 0; i < vehicles; ++i)
 		{
 			images_container.AddImage(agm.GetVehicleImage(i), agm.GetVehicleTooltip(i));

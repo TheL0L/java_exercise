@@ -60,14 +60,14 @@ public class CruiseShipCreationFrame extends JFrame
 		
 		this.add(new JLabel("Vehicle Image:"));
 
-		ImagesContainer images_container = new ImagesContainer(0, 4, 100, 100, true);
+		ImagesContainer images_container = new ImagesContainer(0, 4, 100, 100, true, true);
 		for (int i = 0; i < files.length; ++i)
 		{
 			images_container.AddImage(path + files[i], tooltips[i]);
 		}
 		this.add(images_container);
 		
-		ImagesContainer flags_container = new ImagesContainer(0, 7, 30, 30, false);
+		ImagesContainer flags_container = new ImagesContainer(0, 7, 30, 30, false, true);
 		for (int i = 0; i < flags.length; ++i)
 		{
 			flags_container.AddImage(flags[i], flags_tooltips[i]);

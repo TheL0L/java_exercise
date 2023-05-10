@@ -37,7 +37,7 @@ public class ToyGliderCreationFrame extends JFrame
 
 		this.add(new JLabel("Vehicle Image:"));
 		
-		ImagesContainer images_container = new ImagesContainer(0, 4, 100, 100, true);
+		ImagesContainer images_container = new ImagesContainer(0, 4, 100, 100, true, true);
 		for (int i = 0; i < files.length; ++i)
 		{
 			images_container.AddImage(path + files[i], tooltips[i]);
