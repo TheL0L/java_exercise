@@ -1,15 +1,12 @@
 package graphics;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -20,6 +17,28 @@ public class ImageButton extends JPanel
 	public ImageButton(String file_path, String tooltip_text, int width, int height)
 	{
 		this.LoadImage(file_path);
+        this.SetDimentions(width, height);
+		
+        if ( !tooltip_text.isEmpty() )
+        {
+        	this.setToolTipText(tooltip_text);
+        }
+        
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent event)
+            {
+            	if (SwingUtilities.isLeftMouseButton(event))
+            	{
+            		ImageButton.this.onLeftClick();
+            	}
+            }
+        });
+    }
+	
+	public ImageButton(Image image, String tooltip_text, int width, int height)
+	{
+		this.image = image;
         this.SetDimentions(width, height);
 		
         if ( !tooltip_text.isEmpty() )

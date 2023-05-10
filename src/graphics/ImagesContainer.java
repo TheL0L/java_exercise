@@ -2,6 +2,7 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -37,6 +38,12 @@ public class ImagesContainer extends JPanel
 	public void AddImage(String file_path, String tooltip_text)
 	{
 		this.images.add(new ImageButton(file_path, tooltip_text, this.images_width, this.images_height));
+		this.add(this.images.lastElement());
+	}
+	
+	public void AddImage(Image image, String tooltip_text)
+	{
+		this.images.add(new ImageButton(image, tooltip_text, this.images_width, this.images_height));
 		this.add(this.images.lastElement());
 	}
 	

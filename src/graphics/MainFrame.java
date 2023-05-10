@@ -1,36 +1,32 @@
 package graphics;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
-import Transportation.Vehicle;
-
+import Agency.AgencyManager;
 
 public class MainFrame extends JFrame
 {
-	private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-	
 	public MainFrame()
 	{
 		super("Transportation Agency");
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
 		
-		JButton btn_add = new JButton("Add Vehicle");
-		btn_add.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VehicleCreationFrame creation_frame = new VehicleCreationFrame();
-				creation_frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			}
-		});
-		this.add(btn_add);
+		this.add(new JLabel("Available Vehicles:"));
 		
-		this.setSize(500, 500);
+		
+		AgencyManager agm = AgencyManager.GetInstance();
+		int vehicles = agm.GetVehiclesCount();
+		ImagesContainer images_container = new ImagesContainer(0, 4, 125, 125, false);
+		for (int i = 0; i < vehicles; ++i)
+		{
+			images_container.AddImage(agm.GetVehicleImage(i), agm.GetVehicleTooltip(i));
+		}
+		this.add(images_container);
+		
+		
+		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}

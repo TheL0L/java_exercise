@@ -1,5 +1,6 @@
 package Agency;
 
+import java.awt.Image;
 import java.util.Vector;
 import Transportation.*;
 
@@ -10,6 +11,7 @@ public class AgencyManager
 {
 	private static AgencyManager instance;
 	private Vector<Vehicle> vehicles;
+	private Vector<Image> images;
 	
 	/**
 	 * Constructor for AgencyManager class.
@@ -17,6 +19,7 @@ public class AgencyManager
 	private AgencyManager()
 	{
 		vehicles = new Vector<Vehicle>();
+		images = new Vector<Image>();
 	}
 	
 	/**
@@ -38,12 +41,14 @@ public class AgencyManager
 	 * Method for adding a vehicle to the agency.
 	 * 
 	 * @param vehicle the vehicle to be added.
+	 * @param image   the added vehicle's image data.
 	 * 
 	 * @return integer value referring to the vehicle's index in the agency.
 	 */
-	public int AddVehicle(Vehicle vehicle)
+	public int AddVehicle(Vehicle vehicle, Image image)
 	{
 		this.vehicles.add(vehicle);
+		this.images.add(image);
 		return this.vehicles.size() - 1;
 	}
 	
@@ -71,6 +76,7 @@ public class AgencyManager
 		if (id != -1)
 		{
 			this.vehicles.remove(id);
+			this.images.remove(id);
 		}
 	}
 	
@@ -147,6 +153,23 @@ public class AgencyManager
 			return null;
 		
 		return match.toString();
+	}
+	
+	/**
+	 * Method for retrieving vehicle's image data.
+	 * 
+	 * @param index the vehicle's index in the agency.
+	 * 
+	 * @return image containing requested vehicle's image data.
+	 */
+	public Image GetVehicleImage(int index)
+	{
+		Vehicle match = GetVehicle(index);
+		
+		if (match == null)
+			return null;
+		
+		return this.images.get(index);
 	}
 	
 }
