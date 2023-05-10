@@ -42,7 +42,7 @@ public class AmphibiousCreationFrame extends JFrame
 			"Pirate",
 			"Somalia",
 			"United States of America"
-		};
+	};
 	
 	private GuiElement field_model;
 	private GuiElement field_speed;
