@@ -2,7 +2,6 @@ package Agency;
 
 import java.util.Vector;
 import Transportation.*;
-import graphics.AmphibiousCreationFrame;
 
 /**
  * Singleton class for managing vehicles in an agency.
