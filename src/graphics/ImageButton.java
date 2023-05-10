@@ -1,12 +1,15 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -53,5 +56,11 @@ public class ImageButton extends JPanel
         gfx.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), null);
     }
 	
-	protected void onLeftClick() { }
+	protected void onLeftClick()
+	{
+		if (this.getParent() instanceof ImagesContainer)
+		{
+			((ImagesContainer)this.getParent()).SetSelected(this);
+		}
+	}
 }

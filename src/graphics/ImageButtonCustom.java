@@ -25,10 +25,11 @@ public class ImageButtonCustom extends ImageButton
 		
 		if (result == JFileChooser.APPROVE_OPTION) {
 		    File selectedFile = fileChooser.getSelectedFile();
-		    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
 		    
 		    this.LoadImage(selectedFile.getAbsolutePath());
 		    this.paintComponent(this.getGraphics());
+		    
+		    super.onLeftClick();
 		}
 	}
 }
