@@ -21,9 +21,9 @@ public class CruiseShipCreationFrame extends JFrame
 			"C.jpeg"
 	};
 	private final String[] tooltips = {
-		"",
-		"",
-		""
+		"Image 1",
+		"Image 2",
+		"Image 3"
 	};
 	private final String[] flags = {
 			"src/resources/flags/germany.png",

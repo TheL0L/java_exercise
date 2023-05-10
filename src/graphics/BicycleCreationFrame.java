@@ -21,9 +21,9 @@ public class BicycleCreationFrame extends JFrame
 			"C.jpeg"
 	};
 	private final String[] tooltips = {
-		"",
-		"",
-		""
+		"Image 1",
+		"Image 2",
+		"Image 3"
 	};
 	
 	private GuiElement field_model;
