@@ -10,10 +10,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+/**
+ * Class for creating a click-able image.
+ */
 public class ImageButton extends JPanel
 {
 	protected Image image;
 	
+	/**
+	 * Constructor class for ImageButton using an image file.
+	 * 
+	 * @param file_path     string containing the file path to an image file.
+	 * @param tooltip_text  string containing the text to be used in the tooltip.
+	 * @param width         integer value for the image's width.
+	 * @param height        integer value for the image's height.
+	 */
 	public ImageButton(String file_path, String tooltip_text, int width, int height)
 	{
 		this.LoadImage(file_path);
@@ -36,6 +47,14 @@ public class ImageButton extends JPanel
         });
     }
 	
+	/**
+	 * Constructor class for ImageButton using an image data.
+	 * 
+	 * @param image         image containing the image data to be used.
+	 * @param tooltip_text  string containing the text to be used in the tooltip.
+	 * @param width         integer value for the image's width.
+	 * @param height        integer value for the image's height.
+	 */
 	public ImageButton(Image image, String tooltip_text, int width, int height)
 	{
 		this.image = image;
@@ -58,11 +77,22 @@ public class ImageButton extends JPanel
         });
     }
 	
+	/**
+	 * Method for setting the image's dimensions.
+	 * 
+	 * @param width   integer value for the image's width.
+	 * @param height  integer value for the image's height.
+	 */
 	public void SetDimentions(int width, int height)
 	{
 		this.setPreferredSize(new Dimension(width, height));
 	}
 	
+	/**
+	 * Method loading image data from a file.
+	 * 
+	 * @param width   string containing the file path to an image file.
+	 */
 	protected void LoadImage(String file_path)
 	{
 		this.image = new ImageIcon(file_path).getImage();
@@ -75,6 +105,9 @@ public class ImageButton extends JPanel
         gfx.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), null);
     }
 	
+	/**
+	 * Method that is called on a left mouse click.
+	 */
 	protected void onLeftClick()
 	{
 		if (this.getParent() instanceof ImagesContainer)
