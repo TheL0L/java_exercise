@@ -66,7 +66,7 @@ public class AmphibiousCreationFrame extends JFrame
 		}
 		this.add(images_container);
 		
-		ImagesContainer flags_container = new ImagesContainer(2, 0, 30, 30, false);
+		ImagesContainer flags_container = new ImagesContainer(0, 7, 30, 30, false);
 		for (int i = 0; i < flags.length; ++i)
 		{
 			flags_container.AddImage(flags[i], flags_tooltips[i]);
