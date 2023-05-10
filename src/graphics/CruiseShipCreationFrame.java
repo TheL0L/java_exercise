@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -56,6 +57,8 @@ public class CruiseShipCreationFrame extends JFrame
 		super("Cruise Ship Creation");
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
 		
+		
+		this.add(new JLabel("Vehicle Image:"));
 
 		ImagesContainer images_container = new ImagesContainer(0, 4, 100, 100, true);
 		for (int i = 0; i < files.length; ++i)
