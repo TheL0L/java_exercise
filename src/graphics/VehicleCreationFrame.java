@@ -10,16 +10,25 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import Agency.AgencyManager;
+
 import javax.swing.JPanel;
 
 import Transportation.*;
 
+/**
+ * A preset JFrame extension class for holding the agency setup screen.
+ */
 public class VehicleCreationFrame extends JFrame
 {
+	/**
+	 * Constructor for the VehicleCreationFrame class.
+	 */
 	public VehicleCreationFrame()
 	{
-		super("Vehicle Creation");
-		this.setLayout(new GridLayout(4,2));
+		super("Agency Setup Screen");
+		this.setLayout(new GridLayout(4, 2));
 		
 		JButton jeep_add = new JButton("Add Jeep");
 		jeep_add.addActionListener(new ActionListener() {
@@ -85,23 +94,37 @@ public class VehicleCreationFrame extends JFrame
 		});
 		
 		
-		JButton btn_add = new JButton("Exit Setup");
-		btn_add.addActionListener(new ActionListener() {
+		JButton btn_exit = new JButton("Exit Setup");
+		btn_exit.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO: check if agency size > 0
-				
-				// TODO: check if inputs are valid, then add vehicle and/or close window
-				int option = JOptionPane.showConfirmDialog(
-					VehicleCreationFrame.this,
-					"Are you sure you want to close this window?",
-					"Confirm Close",
-					JOptionPane.YES_NO_OPTION
-				);
-				
-		        if (option == JOptionPane.YES_OPTION) {
-		            dispose(); // close the JFrame
-		        }
+			public void actionPerformed(ActionEvent e)
+			{
+				int vehicles = AgencyManager.GetInstance().GetVehiclesCount();
+				if (vehicles > 0)
+				{
+					int option = JOptionPane.showConfirmDialog(
+						VehicleCreationFrame.this,
+						"Are you sure you want to finish the agency setup?",
+						"Confirm Closing",
+						JOptionPane.YES_NO_OPTION
+					);
+					
+			        if (option == JOptionPane.YES_OPTION)
+			        {
+			        	JFrame frame = new MainFrame();
+			    		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			    		VehicleCreationFrame.this.dispose();
+			        }
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(
+						VehicleCreationFrame.this,
+						"Please add at least a single vehicle to procced.",
+						"Error",
+						JOptionPane.ERROR_MESSAGE
+					);
+				}
 			}
 		});
 		
@@ -113,7 +136,7 @@ public class VehicleCreationFrame extends JFrame
 		this.add(toyglider_add);
 		this.add(bicycle_add);
 		this.add(cruiseship_add);
-		this.add(btn_add);
+		this.add(btn_exit);
 		
 		this.pack();
 		this.setLocationRelativeTo(null);
