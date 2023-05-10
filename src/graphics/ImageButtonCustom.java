@@ -16,10 +16,10 @@ public class ImageButtonCustom extends ImageButton
 	{
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Choose an image file");
-		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		fileChooser.setMultiSelectionEnabled(false);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "bmp");
 		fileChooser.setFileFilter(filter);
+		fileChooser.setAcceptAllFileFilterUsed(false);
 
 		int result = fileChooser.showOpenDialog(null);
 		
