@@ -84,7 +84,7 @@ public class ImagesContainer extends JPanel
 	public void AddImageButton(ImageButton image_button)
 	{
 		this.images.add(image_button);
-		this.images.lastElement().SetDimentions(images_width, images_height);
+		this.images.lastElement().SetDimensions(images_width, images_height);
 		this.add(this.images.lastElement());
 	}
 	
@@ -119,7 +119,7 @@ public class ImagesContainer extends JPanel
 	 */
 	public void SetSelected(ImageButton image_reference)
 	{
-		if (this.selection_enabled == false)
+		if (this.selection_enabled == true)
 		{
 			int id = this.images.indexOf(image_reference);
 			

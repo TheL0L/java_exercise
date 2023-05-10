@@ -28,7 +28,7 @@ public class ImageButton extends JPanel
 	public ImageButton(String file_path, String tooltip_text, int width, int height)
 	{
 		this.LoadImage(file_path);
-        this.SetDimentions(width, height);
+        this.SetDimensions(width, height);
 		
         if ( !tooltip_text.isEmpty() )
         {
@@ -58,7 +58,7 @@ public class ImageButton extends JPanel
 	public ImageButton(Image image, String tooltip_text, int width, int height)
 	{
 		this.image = image;
-        this.SetDimentions(width, height);
+        this.SetDimensions(width, height);
 		
         if ( !tooltip_text.isEmpty() )
         {
@@ -83,7 +83,7 @@ public class ImageButton extends JPanel
 	 * @param width   integer value for the image's width.
 	 * @param height  integer value for the image's height.
 	 */
-	public void SetDimentions(int width, int height)
+	public void SetDimensions(int width, int height)
 	{
 		this.setPreferredSize(new Dimension(width, height));
 	}
@@ -91,7 +91,7 @@ public class ImageButton extends JPanel
 	/**
 	 * Method loading image data from a file.
 	 * 
-	 * @param width   string containing the file path to an image file.
+	 * @param file_path  string containing the file path to an image file.
 	 */
 	protected void LoadImage(String file_path)
 	{
