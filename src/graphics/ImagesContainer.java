@@ -131,4 +131,24 @@ public class ImagesContainer extends JPanel
 			}
 		}
 	}
+	
+	/**
+	 * Method for getting image data from the selected image in the container.
+	 * 
+	 * return Image containing requested image data.
+	 */
+	public Image GetSelectedImage()
+	{
+		if (this.selection_enabled == true)
+		{
+			int id = this.GetSelectedID();
+			
+			if (id != -1)
+			{
+				return this.images.get(id).GetImage();
+			}
+		}
+		
+		return null;
+	}
 }
