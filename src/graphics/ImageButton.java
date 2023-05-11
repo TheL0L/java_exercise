@@ -115,4 +115,14 @@ public class ImageButton extends JPanel
 			((ImagesContainer)this.getParent()).SetSelected(this);
 		}
 	}
+	
+	/**
+	 * Method for retrieving image data of the component.
+	 * 
+	 * @return Image containing requested image data.
+	 */
+	public Image GetImage()
+	{
+		return this.image;
+	}
 }
