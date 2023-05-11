@@ -60,7 +60,7 @@ public class ImageButton extends JPanel
 		this.image = image;
         this.SetDimensions(width, height);
 		
-        if ( !tooltip_text.isEmpty() )
+        if ( tooltip_text != null && !tooltip_text.isEmpty() )
         {
         	this.setToolTipText(tooltip_text);
         }
