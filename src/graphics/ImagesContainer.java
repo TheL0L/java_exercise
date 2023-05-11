@@ -151,4 +151,24 @@ public class ImagesContainer extends JPanel
 		
 		return null;
 	}
+	
+	/**
+	 * Method for getting the selected ImageButton in the container.
+	 * 
+	 * return selected ImageButton reference.
+	 */
+	public ImageButton GetSelectedImageButton()
+	{
+		if (this.selection_enabled == true)
+		{
+			int id = this.GetSelectedID();
+			
+			if (id != -1)
+			{
+				return this.images.get(id);
+			}
+		}
+		
+		return null;
+	}
 }
