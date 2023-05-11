@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 import Agency.AgencyManager;
 import Transportation.*;
 
+/**
+ * A preset JFrame extension class for adding AmphibiousVehicle to the agency.
+ */
 public class AmphibiousCreationFrame extends JFrame
 {
 	private final String path = "src/resources/vehicles/amphibious/";
@@ -55,6 +58,9 @@ public class AmphibiousCreationFrame extends JFrame
 	private GuiElement field_direction;
 	private GuiElement field_flag;
 	
+	/**
+	 * Constructor for the AmphibiousCreationFrame class.
+	 */
 	public AmphibiousCreationFrame()
 	{
 		super("Amphibious Vehicle Creation");

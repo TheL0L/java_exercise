@@ -15,6 +15,9 @@ import Agency.AgencyManager;
 import Transportation.*;
 import Transportation.LandVehicle.RoadType;
 
+/**
+ * A preset JFrame extension class for adding Bicycle to the agency.
+ */
 public class BicycleCreationFrame extends JFrame
 {
 	private final String path = "src/resources/vehicles/bicycle/";
@@ -34,6 +37,9 @@ public class BicycleCreationFrame extends JFrame
 	private GuiElement field_seats;
 	private GuiElement field_road;
 	
+	/**
+	 * Constructor for the BicycleCreationFrame class.
+	 */
 	public BicycleCreationFrame()
 	{
 		super("Bicycle Creation");

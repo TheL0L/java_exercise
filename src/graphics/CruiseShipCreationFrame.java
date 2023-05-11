@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 import Agency.AgencyManager;
 import Transportation.*;
 
+/**
+ * A preset JFrame extension class for adding CruiseShip to the agency.
+ */
 public class CruiseShipCreationFrame extends JFrame
 {
 	private final String path = "src/resources/vehicles/cruise_ship/";
@@ -53,6 +56,9 @@ public class CruiseShipCreationFrame extends JFrame
 	private GuiElement field_engine;
 	private GuiElement field_flag;
 	
+	/**
+	 * Constructor for the CruiseShipCreationFrame class.
+	 */
 	public CruiseShipCreationFrame()
 	{
 		super("Cruise Ship Creation");

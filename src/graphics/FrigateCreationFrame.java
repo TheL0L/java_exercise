@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 import Agency.AgencyManager;
 import Transportation.*;
 
+/**
+ * A preset JFrame extension class for adding Frigate to the agency.
+ */
 public class FrigateCreationFrame extends JFrame
 {
 	private final String path = "src/resources/vehicles/frigate/";
@@ -33,6 +36,9 @@ public class FrigateCreationFrame extends JFrame
 	private GuiElement field_seats;
 	private GuiElement field_direction;
 	
+	/**
+	 * Constructor for the FrigateCreationFrame class.
+	 */
 	public FrigateCreationFrame()
 	{
 		super("Frigate Creation");

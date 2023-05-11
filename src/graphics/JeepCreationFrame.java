@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 import Agency.AgencyManager;
 import Transportation.*;
 
+/**
+ * A preset JFrame extension class for adding Jeep to the agency.
+ */
 public class JeepCreationFrame extends JFrame
 {
 	private final String path = "src/resources/vehicles/jeep/";
@@ -32,6 +35,9 @@ public class JeepCreationFrame extends JFrame
 	private GuiElement field_fuel;
 	private GuiElement field_engine;
 	
+	/**
+	 * Constructor for the JeepCreationFrame class.
+	 */
 	public JeepCreationFrame()
 	{
 		super("Jeep Creation");

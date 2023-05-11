@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 import Agency.AgencyManager;
 import Transportation.*;
 
+/**
+ * A preset JFrame extension class for adding SpyGlider to the agency.
+ */
 public class SpyGliderCreationFrame extends JFrame
 {
 	private final String path = "src/resources/vehicles/spy_glider/";
@@ -30,6 +33,9 @@ public class SpyGliderCreationFrame extends JFrame
 	
 	private GuiElement field_source;
 	
+	/**
+	 * Constructor for the SpyGliderCreationFrame class.
+	 */
 	public SpyGliderCreationFrame()
 	{
 		super("Spy Glider Creation");
