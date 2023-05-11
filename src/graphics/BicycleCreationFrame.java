@@ -11,7 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Agency.AgencyManager;
 import Transportation.*;
+import Transportation.LandVehicle.RoadType;
 
 public class BicycleCreationFrame extends JFrame
 {
@@ -49,9 +51,9 @@ public class BicycleCreationFrame extends JFrame
 		
 		
 		field_model = new GuiElement("Vehicle model:", new JTextField(15));
-		field_speed = new GuiElement("Top speed:", new JTextField(15));
-		field_seats = new GuiElement("Max seats:", new JTextField(15));
-		field_road = new GuiElement("Road type:", new JTextField(15));
+		field_speed = new GuiElement("Top speed:", new DecimalTextField(15));
+		field_seats = new GuiElement("Max seats:", new IntegerTextField(15));
+		field_road = new GuiElement("Road type:", new RoadTypePicker());
 		
 		this.add(field_model);
 		this.add(field_speed);
@@ -62,18 +64,40 @@ public class BicycleCreationFrame extends JFrame
 		JButton btn_add = new JButton("Add Bicycle");
 		btn_add.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO: check if inputs are valid, then add vehicle and/or close window
-				int option = JOptionPane.showConfirmDialog(
-						BicycleCreationFrame.this,
-					"Are you sure you want to close this window?",
-					"Confirm Close",
-					JOptionPane.YES_NO_OPTION
-				);
+			public void actionPerformed(ActionEvent e)
+			{
+				int id  = images_container.GetSelectedID();
+				String model  = ((JTextField)field_model.GetComponent()).getText();
+				String speed  = ((JTextField)field_speed.GetComponent()).getText();
+				String seats  = ((JTextField)field_seats.GetComponent()).getText();
+				int road = ((RoadTypePicker)field_road.GetComponent()).getSelectedIndex();
 				
-		        if (option == JOptionPane.YES_OPTION) {
-		            dispose(); // close the JFrame
-		        }
+				float fspeed;
+				int iseats;
+				
+				if (id != -1)
+				{
+					if ( !model.isBlank() && !speed.isBlank() && !seats.isBlank() )
+					{
+						fspeed = Float.parseFloat(speed);
+						iseats  = Integer.parseInt(seats);
+						
+						if ( fspeed >= 0 && iseats >= 0 )
+						{
+							Vehicle v = new Bicycle(model, fspeed, iseats, RoadType.values()[road]);
+							AgencyManager.GetInstance().AddVehicle(v, images_container.GetSelectedImage());
+							BicycleCreationFrame.this.dispose();
+							return;
+						}
+					}
+				}
+				
+				JOptionPane.showMessageDialog(
+					BicycleCreationFrame.this,
+					"Please make sure to fill all the fields, and select the necessary images.",
+					"Error - Invalid Input",
+					JOptionPane.ERROR_MESSAGE
+				);
 			}
 		});
 		this.add(btn_add);

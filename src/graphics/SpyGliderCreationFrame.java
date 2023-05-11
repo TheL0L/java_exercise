@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Agency.AgencyManager;
 import Transportation.*;
 
 public class SpyGliderCreationFrame extends JFrame
@@ -53,18 +54,28 @@ public class SpyGliderCreationFrame extends JFrame
 		JButton btn_add = new JButton("Add Spy Glider");
 		btn_add.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO: check if inputs are valid, then add vehicle and/or close window
-				int option = JOptionPane.showConfirmDialog(
-						SpyGliderCreationFrame.this,
-					"Are you sure you want to close this window?",
-					"Confirm Close",
-					JOptionPane.YES_NO_OPTION
-				);
+			public void actionPerformed(ActionEvent e)
+			{
+				int id = images_container.GetSelectedID();
+				String source  = ((JTextField)field_source.GetComponent()).getText();
 				
-		        if (option == JOptionPane.YES_OPTION) {
-		            dispose(); // close the JFrame
-		        }
+				if (id != -1)
+				{
+					if ( !source.isBlank() )
+					{
+						Vehicle v = new SpyGlider(source);
+						AgencyManager.GetInstance().AddVehicle(v, images_container.GetSelectedImage());
+						SpyGliderCreationFrame.this.dispose();
+						return;
+					}
+				}
+				
+				JOptionPane.showMessageDialog(
+					SpyGliderCreationFrame.this,
+					"Please make sure to fill all the fields, and select the necessary images.",
+					"Error - Invalid Input",
+					JOptionPane.ERROR_MESSAGE
+				);
 			}
 		});
 		this.add(btn_add);

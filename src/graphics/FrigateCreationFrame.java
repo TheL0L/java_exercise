@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Agency.AgencyManager;
 import Transportation.*;
 
 public class FrigateCreationFrame extends JFrame
@@ -49,8 +50,8 @@ public class FrigateCreationFrame extends JFrame
 		
 		
 		field_model = new GuiElement("Vehicle model:", new JTextField(15));
-		field_speed = new GuiElement("Top speed:", new JTextField(15));
-		field_seats = new GuiElement("Max seats:", new JTextField(15));
+		field_speed = new GuiElement("Top speed:", new DecimalTextField(15));
+		field_seats = new GuiElement("Max seats:", new IntegerTextField(15));
 		field_direction = new GuiElement("Direction:", new JCheckBox("With Wind?"));
 		
 		this.add(field_model);
@@ -62,18 +63,40 @@ public class FrigateCreationFrame extends JFrame
 		JButton btn_add = new JButton("Add Frigate");
 		btn_add.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO: check if inputs are valid, then add vehicle and/or close window
-				int option = JOptionPane.showConfirmDialog(
-					FrigateCreationFrame.this,
-					"Are you sure you want to close this window?",
-					"Confirm Close",
-					JOptionPane.YES_NO_OPTION
-				);
+			public void actionPerformed(ActionEvent e)
+			{
+				int id = images_container.GetSelectedID();
+				String model  = ((JTextField)field_model.GetComponent()).getText();
+				String speed  = ((JTextField)field_speed.GetComponent()).getText();
+				String seats   = ((JTextField)field_seats.GetComponent()).getText();
+				Boolean direction = ((JCheckBox)field_direction.GetComponent()).isSelected();
 				
-		        if (option == JOptionPane.YES_OPTION) {
-		            dispose(); // close the JFrame
-		        }
+				float fspeed;
+				int iseats;
+				
+				if (id != -1)
+				{
+					if ( !model.isBlank() && !speed.isBlank() && !seats.isBlank() )
+					{
+						fspeed = Float.parseFloat(speed);
+						iseats = Integer.parseInt(seats);
+						
+						if ( fspeed >= 0 && iseats >= 0 )
+						{
+							Vehicle v = new Frigate(model, fspeed, iseats, direction);
+							AgencyManager.GetInstance().AddVehicle(v, images_container.GetSelectedImage());
+							FrigateCreationFrame.this.dispose();
+							return;
+						}
+					}
+				}
+				
+				JOptionPane.showMessageDialog(
+					FrigateCreationFrame.this,
+					"Please make sure to fill all the fields, and select the necessary images.",
+					"Error - Invalid Input",
+					JOptionPane.ERROR_MESSAGE
+				);
 			}
 		});
 		this.add(btn_add);
