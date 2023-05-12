@@ -125,4 +125,9 @@ public class ImageButton extends JPanel
 	{
 		return this.image;
 	}
+	
+	/**
+	 * Method for updating the tooltip text.
+	 */
+	public void UpdateTooltip() { }
 }

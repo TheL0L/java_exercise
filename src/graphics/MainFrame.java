@@ -57,6 +57,12 @@ public class MainFrame extends JFrame
 						this.setToolTipText(AgencyManager.GetInstance().GetVehicleTooltip(vehicle_id));
 						images_container.repaint();
 					}
+					
+					@Override
+					public void UpdateTooltip()
+					{
+						this.setToolTipText(agm.GetVehicleTooltip(vehicle_id));
+					}
 				}
 			);
 		}
@@ -67,6 +73,7 @@ public class MainFrame extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				agm.ResetAllVehiclesTravelDistance();
+				images_container.UpdateTooltips();
 			}
 		});
 		JButton bexit = new JButton("Exit");

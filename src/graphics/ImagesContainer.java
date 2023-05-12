@@ -171,4 +171,12 @@ public class ImagesContainer extends JPanel
 		
 		return null;
 	}
+	
+	public void UpdateTooltips()
+	{
+		for (ImageButton image : this.images)
+		{
+			image.UpdateTooltip();
+		}
+	}
 }
