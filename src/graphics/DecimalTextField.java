@@ -1,6 +1,6 @@
 package graphics;
 
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 import javax.swing.JFormattedTextField;
 
 /**
@@ -15,8 +15,8 @@ public class DecimalTextField extends JFormattedTextField
 	 */
 	public DecimalTextField(int width)
 	{
-		super(NumberFormat.getNumberInstance());	
-        
+		super(new DecimalFormat("#########.#########"));
+
         this.setColumns(width);
 	}
 }
