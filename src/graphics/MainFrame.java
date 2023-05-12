@@ -39,7 +39,7 @@ public class MainFrame extends JFrame
 						super.onLeftClick();
 						
 						VehicleActionDialog dialog = new VehicleActionDialog(
-							MainFrame.this, "Select Action", agm.GetVehicleTooltip(vehicle_id),
+							MainFrame.this, "Select Action", agm.GetVehicleDescription(vehicle_id),
 							agm.GetVehicleImage(vehicle_id), vehicle_id
 						);
 

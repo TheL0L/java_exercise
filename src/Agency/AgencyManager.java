@@ -172,6 +172,23 @@ public class AgencyManager
 		if (entry == null)
 			return null;
 		
+		return formatHtmlPrompt(entry.vehicle.toString());
+	}
+	
+	/**
+	 * Method for retrieving vehicle's description text.
+	 * 
+	 * @param id the unique id that was given during entry creation.
+	 * 
+	 * @return string containing requested vehicle's description text.
+	 */
+	public String GetVehicleDescription(int id)
+	{
+		Entry entry = findEntry(id);
+		
+		if (entry == null)
+			return null;
+		
 		return formatPrompt(entry.vehicle.toString());
 	}
 	
@@ -212,16 +229,30 @@ public class AgencyManager
 	}
 	
 	/**
+	 * Function for formating string into visually appealing description message.
+	 * 
+	 * @param prompt the string that needs to be formated.
+	 * 
+	 * @return formated string that can be used as description text.
+	 */
+ 	private static String formatPrompt(String prompt)
+	{
+		String result;
+		result = prompt.substring(prompt.indexOf(':') + 2).replace(", ", "\n * ");
+		return result;
+	}
+ 	
+ 	/**
 	 * Function for formating string into visually appealing tooltip message.
 	 * 
 	 * @param prompt the string that needs to be formated.
 	 * 
 	 * @return formated string that can be used as tooltip text.
 	 */
- 	private static String formatPrompt(String prompt)
+ 	private static String formatHtmlPrompt(String prompt)
 	{
 		String result;
-		result = prompt.substring(prompt.indexOf(':') + 2).replace(", ", "\n * ");
+		result = "<html>" + prompt.replace(", ", "<br/> * ") + "</html>";
 		return result;
 	}
 	
