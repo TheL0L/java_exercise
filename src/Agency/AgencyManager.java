@@ -1,5 +1,6 @@
 package Agency;
 
+import java.awt.Image;
 import java.util.Vector;
 import Transportation.*;
 
@@ -8,15 +9,42 @@ import Transportation.*;
  */
 public class AgencyManager
 {
+	/**
+	 * Class for holding data entries.
+	 */
+	private class Entry
+	{
+		static int unique_id = 0;
+		
+		public Vehicle vehicle;
+		public Image image;
+		public int id;
+		
+		/**
+		 * Constructor for Entry class..
+		 * 
+		 * @param vehicle  vehicle reference.
+		 * @param image    image reference.
+		 */
+		public Entry(Vehicle vehicle, Image image)
+		{
+			unique_id++;
+			
+			this.vehicle = vehicle;
+			this.image = image;
+			this.id = unique_id;
+		}
+	}
+	
 	private static AgencyManager instance;
-	private Vector<Vehicle> vehicles;
+	private Vector<Entry> data;
 	
 	/**
 	 * Constructor for AgencyManager class.
 	 */
 	private AgencyManager()
 	{
-		vehicles = new Vector<Vehicle>();
+		data = new Vector<Entry>();
 	}
 	
 	/**
@@ -38,64 +66,71 @@ public class AgencyManager
 	 * Method for adding a vehicle to the agency.
 	 * 
 	 * @param vehicle the vehicle to be added.
+	 * @param image   the added vehicle's image data.
 	 * 
-	 * @return integer value referring to the vehicle's index in the agency.
+	 * @return integer value referring to the vehicle's unique id in the agency, it will be used to gain future access to the vehicle.
 	 */
-	public int AddVehicle(Vehicle vehicle)
+	public int AddVehicle(Vehicle vehicle, Image image)
 	{
-		this.vehicles.add(vehicle);
-		return this.vehicles.size() - 1;
-	}
-	
-	/**
-	 * Method for retrieving vehicle's index in the agency.
-	 * 
-	 * @param vehicle the vehicle to be searched.
-	 * 
-	 * @return integer value referring to the vehicle's index in the agency.
-	 */
-	private int GetVehicleIndex(Vehicle vehicle)
-	{
-		return this.vehicles.indexOf(vehicle);
+		Entry entry = new Entry(vehicle, image);
+		this.data.add(entry);
+		return entry.id;
 	}
 	
 	/**
 	 * Method for removing a vehicle from the agency.
 	 * 
-	 * @param vehicle the vehicle to be removed.
+	 * @param id the unique id that was given during entry creation.
 	 */
-	public void RemoveVehicle(Vehicle vehicle)
+	public void RemoveVehicle(int id)
 	{
-		int id = this.GetVehicleIndex(vehicle);
-		
-		if (id != -1)
+		Entry entry = findEntry(id);
+		if (entry != null)
 		{
-			this.vehicles.remove(id);
+			this.data.remove(entry);
 		}
 	}
-	
+
 	/**
 	 * Method for retrieving vehicles count in agency.
+	 * 
+	 * @return integer value representing vehicle count in agency.
 	 */
 	public int GetVehiclesCount()
 	{
-		return this.vehicles.size();
+		return this.data.size();
+	}
+	
+	/**
+	 * Method for retrieving all vehicle ids from within the agency.
+	 * 
+	 * @return vector containing all vehicle ids.
+	 */
+	public Vector<Integer> GetVehicleIDs()
+	{
+		Vector<Integer> ids = new Vector<Integer>();
+		for (Entry entry : this.data)
+		{
+			ids.add(entry.id);
+		}
+		return ids;
 	}
 	
 	/**
 	 * Method for retrieving a vehicle from the agency.
 	 * 
-	 * @param index the vehicle's index in the agency.
+	 * @param id the unique id that was given during entry creation.
 	 * 
 	 * @return requested vehicle's reference.
 	 */
-	public Vehicle GetVehicle(int index)
+	public Vehicle GetVehicle(int id)
 	{
-		if (index >= 0 && index < this.vehicles.size())
-		{
-			return this.vehicles.get(index);
-		}
-		return null;
+		Entry entry = findEntry(id);
+		
+		if (entry == null)
+			return null;
+		
+		return entry.vehicle;
 	}
 	
 	/**
@@ -103,50 +138,131 @@ public class AgencyManager
 	 */
 	public void ResetAllVehiclesTravelDistance()
 	{
-		for (Vehicle vehicle : this.vehicles)
+		for (Entry entry : this.data)
 		{
-			vehicle.ResetTravelDistance();
+			entry.vehicle.ResetTravelDistance();
 		}
 	}
 	
 	/**
 	 * Method for changing flag of a vehicle in the agency.
 	 * 
-	 * @param index     the vehicle's index in the agency.
+	 * @param id        the unique id that was given during entry creation.
 	 * @param flag_name the new flag name.
 	 */
-	public void ChangeVehicleFlag(int index, String flag_name)
+	public void ChangeVehicleFlag(int id, String flag_name)
 	{
-		Vehicle match = GetVehicle(index);
+		Entry entry = findEntry(id);
 		
-		if (match == null)
-			return;
-		
-		if (match instanceof NavalVehicle)
+		if (entry != null)
 		{
-			((NavalVehicle)match).SetCountry(flag_name);
-		}
-		else if (match instanceof AmphibiousVehicle)
-		{
-			((AmphibiousVehicle)match).SetCountry(flag_name);
+			if (entry.vehicle instanceof NavalVehicle)
+			{
+				((NavalVehicle)entry.vehicle).SetCountry(flag_name);
+			}
+			else if (entry.vehicle instanceof AmphibiousVehicle)
+			{
+				((AmphibiousVehicle)entry.vehicle).SetCountry(flag_name);
+			}
 		}
 	}
 	
 	/**
 	 * Method for retrieving vehicle's tooltip text.
 	 * 
-	 * @param index the vehicle's index in the agency.
+	 * @param id the unique id that was given during entry creation.
 	 * 
 	 * @return string containing requested vehicle's tooltip text.
 	 */
-	public String GetVehicleTooltip(int index)
+	public String GetVehicleTooltip(int id)
 	{
-		Vehicle match = GetVehicle(index);
+		Entry entry = findEntry(id);
 		
-		if (match == null)
+		if (entry == null)
 			return null;
 		
-		return match.toString();
+		return formatHtmlPrompt(entry.vehicle.toString());
+	}
+	
+	/**
+	 * Method for retrieving vehicle's description text.
+	 * 
+	 * @param id the unique id that was given during entry creation.
+	 * 
+	 * @return string containing requested vehicle's description text.
+	 */
+	public String GetVehicleDescription(int id)
+	{
+		Entry entry = findEntry(id);
+		
+		if (entry == null)
+			return null;
+		
+		return formatPrompt(entry.vehicle.toString());
+	}
+	
+	/**
+	 * Method for retrieving vehicle's image data.
+	 * 
+	 * @param id the unique id that was given during entry creation.
+	 * 
+	 * @return image containing requested vehicle's image data.
+	 */
+	public Image GetVehicleImage(int id)
+	{
+		Entry entry = findEntry(id);
+		
+		if (entry == null)
+			return null;
+		
+		return entry.image;
+	}
+	
+	/**
+	 * Method for searching a specific entry within the agency.
+	 * 
+	 * @param id the unique id that was given during entry creation.
+	 * 
+	 * @return the requested entry reference.
+	 */
+	private Entry findEntry(int id)
+	{
+		for (Entry entry : this.data)
+		{
+			if (entry.id == id)
+			{
+				return entry;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Function for formating string into visually appealing description message.
+	 * 
+	 * @param prompt the string that needs to be formated.
+	 * 
+	 * @return formated string that can be used as description text.
+	 */
+ 	private static String formatPrompt(String prompt)
+	{
+		String result;
+		result = prompt.substring(prompt.indexOf(':') + 2).replace(", ", "\n * ");
+		return result;
+	}
+ 	
+ 	/**
+	 * Function for formating string into visually appealing tooltip message.
+	 * 
+	 * @param prompt the string that needs to be formated.
+	 * 
+	 * @return formated string that can be used as tooltip text.
+	 */
+ 	private static String formatHtmlPrompt(String prompt)
+	{
+		String result;
+		result = "<html>" + prompt.replace(", ", "<br/> * ") + "</html>";
+		return result;
 	}
 	
 }
