@@ -84,10 +84,27 @@ public class AgencyManager
 
 	/**
 	 * Method for retrieving vehicles count in agency.
+	 * 
+	 * @return integer value representing vehicle count in agency.
 	 */
 	public int GetVehiclesCount()
 	{
 		return this.data.size();
+	}
+	
+	/**
+	 * Method for retrieving all vehicle ids from within the agency.
+	 * 
+	 * @return vector containing all vehicle ids.
+	 */
+	public Vector<Integer> GetVehicleIDs()
+	{
+		Vector<Integer> ids = new Vector<Integer>();
+		for (Entry entry : this.data)
+		{
+			ids.add(entry.id);
+		}
+		return ids;
 	}
 	
 	/**
