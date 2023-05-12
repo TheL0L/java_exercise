@@ -135,7 +135,7 @@ public class ImagesContainer extends JPanel
 	/**
 	 * Method for getting image data from the selected image in the container.
 	 * 
-	 * return Image containing requested image data.
+	 * @return Image containing requested image data.
 	 */
 	public Image GetSelectedImage()
 	{
@@ -155,7 +155,7 @@ public class ImagesContainer extends JPanel
 	/**
 	 * Method for getting the selected ImageButton in the container.
 	 * 
-	 * return selected ImageButton reference.
+	 * @return selected ImageButton reference.
 	 */
 	public ImageButton GetSelectedImageButton()
 	{
