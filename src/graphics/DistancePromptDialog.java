@@ -12,10 +12,20 @@ import javax.swing.JTextField;
 
 import Transportation.Vehicle;
 
+/**
+ * A preset JDialog extension class for performing a test drive action on a vehicle.
+ */
 public class DistancePromptDialog extends JDialog
 {
 	private Vehicle vehicle_reference;
 
+	/**
+	 * Constructor for the DistancePromptDialog class.
+	 * 
+	 * @param parent     reference to the parent frame.
+	 * @param title      string containing the VehicleActionDialog instance title.
+	 * @param vehicle_id the unique id that is given to each vehicle during creation.
+	 */
 	public DistancePromptDialog(Frame parent, String title, Vehicle vehicle_reference)
 	{
         super(parent, title, true);

@@ -7,11 +7,23 @@ import javax.swing.*;
 import Agency.AgencyManager;
 import Transportation.Vehicle;
 
+/**
+ * A preset JDialog extension class for presenting available actions.
+ */
 public class VehicleActionDialog extends JDialog
 {
 	private int return_value;
 	private int vehicle_id;
 	
+	/**
+	 * Constructor for the VehicleActionDialog class.
+	 * 
+	 * @param parent     reference to the parent frame.
+	 * @param title      string containing the VehicleActionDialog instance title.
+	 * @param prompt     string containing the VehicleActionDialog instance prompt.
+	 * @param image      image containing the image data to be displayed in the VehicleActionDialog instance.
+	 * @param vehicle_id the unique id that is given to each vehicle during creation.
+	 */
     public VehicleActionDialog(Frame parent, String title, String prompt, Image image, int vehicle_id)
     {
         super(parent, title, true);
@@ -69,6 +81,11 @@ public class VehicleActionDialog extends JDialog
         });
     }
 
+    /**
+     * Method for opening the dialog.
+     * 
+     * @return integer exit code, -1 for purchase.
+     */
 	public int ShowDialog()
 	{
 		this.setVisible(true);

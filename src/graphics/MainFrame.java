@@ -13,10 +13,16 @@ import javax.swing.JPanel;
 import Agency.AgencyManager;
 import Transportation.Vehicle;
 
+/**
+ * A preset JFrame extension class for displaying all vehicles and allowing calling actions on them.
+ */
 public class MainFrame extends JFrame
 {
 	private ImagesContainer images_container;
 	
+	/**
+	 * Constructor for the MainFrame class.
+	 */
 	public MainFrame()
 	{
 		super("Transportation Agency");

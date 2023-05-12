@@ -9,6 +9,9 @@ import Transportation.*;
  */
 public class AgencyManager
 {
+	/**
+	 * Class for holding data entries.
+	 */
 	private class Entry
 	{
 		static int unique_id = 0;
@@ -17,6 +20,12 @@ public class AgencyManager
 		public Image image;
 		public int id;
 		
+		/**
+		 * Constructor for Entry class..
+		 * 
+		 * @param vehicle  vehicle reference.
+		 * @param image    image reference.
+		 */
 		public Entry(Vehicle vehicle, Image image)
 		{
 			unique_id++;
