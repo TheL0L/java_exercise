@@ -30,24 +30,6 @@ public class CruiseShipCreationFrame extends JFrame
 		"Image 2",
 		"Image 3"
 	};
-	private final String[] flags = {
-			"src/resources/flags/germany.png",
-			"src/resources/flags/greece.png",
-			"src/resources/flags/israel.png",
-			"src/resources/flags/italy.png",
-			"src/resources/flags/pirate.jpeg",
-			"src/resources/flags/somalia.png",
-			"src/resources/flags/usa.png"
-	};
-	private final String[] flags_tooltips = {
-			"Germany",
-			"Greece",
-			"Israel",
-			"Italy",
-			"Pirate",
-			"Somalia",
-			"United States of America"
-	};
 	
 	private GuiElement field_model;
 	private GuiElement field_speed;
@@ -74,19 +56,13 @@ public class CruiseShipCreationFrame extends JFrame
 		}
 		this.add(images_container);
 		
-		ImagesContainer flags_container = new ImagesContainer(0, 7, 30, 30, false, true);
-		for (int i = 0; i < flags.length; ++i)
-		{
-			flags_container.AddImage(flags[i], flags_tooltips[i]);
-		}
-		
 		
 		field_model = new GuiElement("Vehicle model:", new JTextField(15));
 		field_speed = new GuiElement("Top speed:", new DecimalTextField(15));
 		field_seats = new GuiElement("Max seats:", new IntegerTextField(15));
 		field_fuel = new GuiElement("Fuel consumption:", new DecimalTextField(15));
 		field_engine = new GuiElement("Engine life:", new DecimalTextField(15));
-		field_flag = new GuiElement("Flag:", flags_container);
+		field_flag = new GuiElement("Flag:", new FlagPicker(0, 7, 30, 30));
 		
 		this.add(field_model);
 		this.add(field_speed);
@@ -102,7 +78,7 @@ public class CruiseShipCreationFrame extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				int id  = images_container.GetSelectedID();
-				int idf = flags_container.GetSelectedID();
+				int idf = ((FlagPicker)field_flag.GetComponent()).GetSelectedID();
 				String model  = ((JTextField)field_model.GetComponent()).getText();
 				String speed  = ((JTextField)field_speed.GetComponent()).getText();
 				String seats  = ((JTextField)field_seats.GetComponent()).getText();
@@ -122,7 +98,7 @@ public class CruiseShipCreationFrame extends JFrame
 						ffuel  = Float.parseFloat(fuel);
 						fengine = Float.parseFloat(engine);
 						iseats  = Integer.parseInt(seats);
-						flag = flags_container.GetSelectedImageButton().getToolTipText();
+						flag = ((FlagPicker)field_flag.GetComponent()).GetFlagName();
 						
 						if ( fspeed >= 0 && ffuel >= 0 && fengine >= 0 && iseats >= 0 )
 						{

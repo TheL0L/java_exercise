@@ -5,6 +5,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import Agency.AgencyManager;
+import Transportation.AmphibiousVehicle;
+import Transportation.NavalVehicle;
 import Transportation.Vehicle;
 
 /**
@@ -43,14 +45,22 @@ public class VehicleActionDialog extends JDialog
 
         JPanel buttons = new JPanel();
         JButton bdrive = new JButton("Test Drive");
+        JButton bflag = new JButton("Change Flag");
         JButton bbuy = new JButton("Purchase");
         
         buttons.add(bdrive);
+        buttons.add(bflag);
         buttons.add(bbuy);
         add(buttons, BorderLayout.SOUTH);
 
         pack();
         setLocationRelativeTo(parent);
+        
+        Vehicle ref = AgencyManager.GetInstance().GetVehicle(vehicle_id);
+        if (!(ref instanceof NavalVehicle) && !(ref instanceof AmphibiousVehicle))
+        {
+        	bflag.setEnabled(false);
+        }
 
         bdrive.addActionListener(new ActionListener() {
             @Override
@@ -59,6 +69,15 @@ public class VehicleActionDialog extends JDialog
             	DistancePromptDialog dialog = new DistancePromptDialog(
             			null, "Enter test drive distance", AgencyManager.GetInstance().GetVehicle(vehicle_id)
             			);
+            	dialog.setVisible(true);
+                dispose();
+            }
+        });
+        bflag.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+            	FlagPromptDialog dialog = new FlagPromptDialog(null, "Select new flag", vehicle_id);
             	dialog.setVisible(true);
                 dispose();
             }
