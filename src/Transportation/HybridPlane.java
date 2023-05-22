@@ -169,7 +169,7 @@ public class HybridPlane extends Vehicle implements iMotorized
 	@Override
 	public String toString()
 	{
-		return "HybridPlane: " + super.toString()
+		return "Hybrid Plane: " + super.toString()
 			+ ", Usage: " + this.GetUsage()
 			+ ", Wheels count: " + this.GetWheelsCount() + ", Road type: " + this.GetRoadType()
 			+ ", Country : " + this.GetCountry() + ", Moves with wind's direction: " + this.GetDirection()
