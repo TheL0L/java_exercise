@@ -76,6 +76,14 @@ public class MainFrame extends JFrame
 				images_container.UpdateTooltips();
 			}
 		});
+		JButton bstock = new JButton("View Inventory Report");
+		bstock.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				InventoryReportFrame report = new InventoryReportFrame();
+				report.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			}
+		});
 		JButton bexit = new JButton("Exit");
 		bexit.addActionListener(new ActionListener() {
 			@Override
@@ -85,6 +93,7 @@ public class MainFrame extends JFrame
 		});
 
 		buttons.add(breset);
+		buttons.add(bstock);
 		buttons.add(bexit);
 		this.add(buttons);
 		
