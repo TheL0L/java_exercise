@@ -12,6 +12,8 @@ public class ElectricBicycle extends LandVehicle implements iMotorized
 	 * @param max_speed     vehicle's top speed.
 	 * @param max_seats     vehicle's seat count.
 	 * @param road_type     vehicle's intended road type.
+	 * @param fuel_consumption       vehicle's average fuel consumption.
+	 * @param engine_life_expectancy vehicle's engine life expectancy.
 	 */
 	public ElectricBicycle(String model_name, float max_speed, int max_seats, RoadType road_type, float fuel_consumption, float engine_life_expectancy)
 	{
