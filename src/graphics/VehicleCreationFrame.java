@@ -93,6 +93,24 @@ public class VehicleCreationFrame extends JFrame
 			}
 		});
 		
+		JButton ebicycle_add = new JButton("Add Electric Bicycle");
+		ebicycle_add.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ElectricBicycleCreationFrame frame = new ElectricBicycleCreationFrame();
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		
+		JButton hplane_add = new JButton("Add Hybrid Plane");
+		hplane_add.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HybridPlaneCreationFrame frame = new HybridPlaneCreationFrame();
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		
 		
 		JButton btn_exit = new JButton("Exit Setup");
 		btn_exit.addActionListener(new ActionListener() {
@@ -136,6 +154,8 @@ public class VehicleCreationFrame extends JFrame
 		this.add(toyglider_add);
 		this.add(bicycle_add);
 		this.add(cruiseship_add);
+		this.add(ebicycle_add);
+		this.add(hplane_add);
 		this.add(btn_exit);
 		
 		this.pack();
