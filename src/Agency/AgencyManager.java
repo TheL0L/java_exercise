@@ -39,12 +39,19 @@ public class AgencyManager
 	private static AgencyManager instance;
 	private Vector<Entry> data;
 	
+	private EventService service;
+	
+	private Driver driver_aerial;
+	private Driver driver_land;
+	private Driver driver_naval;
+	
 	/**
 	 * Constructor for AgencyManager class.
 	 */
 	private AgencyManager()
 	{
 		data = new Vector<Entry>();
+		service = new EventService();
 	}
 	
 	/**
@@ -265,4 +272,55 @@ public class AgencyManager
 		return result;
 	}
 	
+ 	public boolean TestDrive(int id, float distance)
+ 	{
+ 		Vehicle ref = GetVehicle(id);
+ 		
+ 		if (ref instanceof AerialVehicle)
+ 		{
+ 			if (driver_aerial == null || driver_aerial.isAlive() == false)
+ 			{
+ 				driver_aerial = new Driver(ref, distance);
+ 				driver_aerial.start();
+ 				return true;
+ 			}
+ 		}
+ 		
+ 		else if (ref instanceof LandVehicle)
+ 		{
+ 			if (driver_land == null || driver_land.isAlive() == false)
+ 			{
+ 				driver_land = new Driver(ref, distance);
+ 				driver_land.start();
+ 				return true;
+ 			}
+ 		}
+ 		
+ 		else if (ref instanceof NavalVehicle)
+ 		{
+ 			if (driver_naval == null || driver_naval.isAlive() == false)
+ 			{
+ 				driver_naval = new Driver(ref, distance);
+ 				driver_naval.start();
+ 				return true;
+ 			}
+ 		}
+ 		
+ 		else if (ref instanceof AmphibiousVehicle)
+ 		{
+ 			// TODO: decide on what to do here...
+ 		}
+ 		
+ 		else if (ref instanceof HybridPlane)
+ 		{
+ 			// TODO: decide on what to do here...
+ 		}
+ 		
+ 		return false;
+ 	}
+ 	
+ 	public EventService GetEventService()
+ 	{
+ 		return this.service;
+ 	}
 }

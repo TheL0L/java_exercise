@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Agency.AgencyManager;
 import Transportation.Vehicle;
 
 /**
@@ -17,22 +18,22 @@ import Transportation.Vehicle;
  */
 public class DistancePromptDialog extends JDialog
 {
-	private Vehicle vehicle_reference;
+	private int vehicle_id;
 
 	/**
 	 * Constructor for the DistancePromptDialog class.
 	 * 
 	 * @param parent     reference to the parent frame.
-	 * @param title      string containing the VehicleActionDialog instance title.
+	 * @param title      string containing the DistancePromptDialog instance title.
 	 * @param vehicle_id the unique id that is given to each vehicle during creation.
 	 */
-	public DistancePromptDialog(Frame parent, String title, Vehicle vehicle_reference)
+	public DistancePromptDialog(Frame parent, String title, int vehicle_id)
 	{
         super(parent, title, true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
         
-        this.vehicle_reference = vehicle_reference;
+        this.vehicle_id = vehicle_id;
         
         GuiElement field_distance = new GuiElement("Test drive distance:", new DecimalTextField(15));
         add(field_distance, BorderLayout.CENTER);
@@ -56,7 +57,16 @@ public class DistancePromptDialog extends JDialog
             		fdistance = Float.parseFloat(distance);
             		if ( fdistance > 0 )
             		{
-            			vehicle_reference.Move(fdistance);
+            			Boolean result = AgencyManager.GetInstance().TestDrive(vehicle_id, fdistance);
+            			if (result == false)
+            			{
+            				JOptionPane.showMessageDialog(
+        						null,
+        						"Couldn't perform a test drive, no free drivers.",
+        						"Error",
+        						JOptionPane.ERROR_MESSAGE
+    						);
+            			}
             			dispose();
             			return;
             		}
