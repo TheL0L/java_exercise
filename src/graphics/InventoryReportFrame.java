@@ -9,9 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import Agency.AgencyManager;
+import Agency.Event;
+import Agency.iEventHandler;
 
-
-public class InventoryReportFrame extends JFrame
+/**
+ * A preset JFrame extension class for displaying all vehicles.
+ */
+public class InventoryReportFrame extends JFrame implements iEventHandler
 {
 	private ImagesContainer images_container;
 	private AgencyManager agm;
@@ -25,12 +29,13 @@ public class InventoryReportFrame extends JFrame
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
 		
 		this.agm = AgencyManager.GetInstance();
+		agm.GetEventService().Subscribe(this);
 		
 		this.add(new JLabel("Available Vehicles:"));
 
 		this.UpdateInventory();
 		
-		// TODO: replace button with a proper actionlistener
+		/*// TODO: replace button with a proper actionlistener
 		JButton bstock = new JButton("Update");
 		bstock.addActionListener(new ActionListener() {
 			@Override
@@ -39,7 +44,7 @@ public class InventoryReportFrame extends JFrame
 			}
 		});
 		this.add(bstock);
-		// TODO: button ends here
+		// TODO: button ends here*/
 		
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
@@ -74,5 +79,12 @@ public class InventoryReportFrame extends JFrame
 		
 		this.pack();
 		this.repaint();
+	}
+	
+	@Override
+	public synchronized void Update(int unique_id, Event event)
+	{
+		UpdateInventory();
+		System.out.println("StockFrame Update() called by event:" + event.name());
 	}
 }
