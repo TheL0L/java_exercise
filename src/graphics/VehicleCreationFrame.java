@@ -129,7 +129,7 @@ public class VehicleCreationFrame extends JFrame
 					
 			        if (option == JOptionPane.YES_OPTION)
 			        {
-			        	JFrame frame = new MainFrame();
+			        	JFrame frame = MainFrame.GetInstance();
 			    		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			    		VehicleCreationFrame.this.dispose();
 			        }
