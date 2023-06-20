@@ -1,23 +1,19 @@
 package Agency;
 
-import Transportation.Vehicle;
-
 public class Driver extends Thread
 {
-	private Vehicle reference;
+	private int vehicle_id;
 	private float distance;
 	
-	public Driver(Vehicle reference, float distance)
+	public Driver(int vehicle_id, float distance)
 	{
-        this.reference = reference;
+        this.vehicle_id = vehicle_id;
         this.distance = distance;
 	}
 
 	@Override
 	public void run()
 	{
-		reference.Move(distance);
-		
         try
         {
             long sleepTime = (long) (distance * 100);
@@ -25,7 +21,12 @@ public class Driver extends Thread
         }
         catch (InterruptedException e)
         {
+        	distance = 0;
             e.printStackTrace();
+        }
+        finally
+        {
+        	AgencyManager.GetInstance().EndTestDrive(vehicle_id, distance);
         }
 	}
 }
