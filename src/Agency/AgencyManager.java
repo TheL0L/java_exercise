@@ -2,7 +2,12 @@ package Agency;
 
 import java.awt.Image;
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import Transportation.*;
+import Transportation.decorators.StatusDecorator;
+import Transportation.decorators.StatusDecorator.VehicleStatus;
 
 /**
  * Singleton class for managing vehicles in an agency.
@@ -41,9 +46,9 @@ public class AgencyManager
 	
 	private EventService service;
 	
-	private Driver driver_aerial;
-	private Driver driver_land;
-	private Driver driver_naval;
+	private final int drivers_count = 7;
+	private int free_drivers;
+	private ExecutorService driver_pool;
 	
 	/**
 	 * Constructor for AgencyManager class.
@@ -52,6 +57,8 @@ public class AgencyManager
 	{
 		data = new Vector<Entry>();
 		service = new EventService();
+		driver_pool = Executors.newFixedThreadPool(drivers_count);
+		free_drivers = drivers_count;
 	}
 	
 	/**
@@ -276,47 +283,27 @@ public class AgencyManager
  	{
  		Vehicle ref = GetVehicle(id);
  		
- 		if (ref instanceof AerialVehicle)
- 		{
- 			if (driver_aerial == null || driver_aerial.isAlive() == false)
- 			{
- 				driver_aerial = new Driver(ref, distance);
- 				driver_aerial.start();
- 				return true;
- 			}
- 		}
+ 		if (ref == null)
+ 			return false;
  		
- 		else if (ref instanceof LandVehicle)
+ 		if (free_drivers > 0 && ((StatusDecorator)ref).GetStatus() == VehicleStatus.AVAILABLE)
  		{
- 			if (driver_land == null || driver_land.isAlive() == false)
- 			{
- 				driver_land = new Driver(ref, distance);
- 				driver_land.start();
- 				return true;
- 			}
- 		}
- 		
- 		else if (ref instanceof NavalVehicle)
- 		{
- 			if (driver_naval == null || driver_naval.isAlive() == false)
- 			{
- 				driver_naval = new Driver(ref, distance);
- 				driver_naval.start();
- 				return true;
- 			}
- 		}
- 		
- 		else if (ref instanceof AmphibiousVehicle)
- 		{
- 			// TODO: decide on what to do here...
- 		}
- 		
- 		else if (ref instanceof HybridPlane)
- 		{
- 			// TODO: decide on what to do here...
+ 			((StatusDecorator)ref).SetStatus(VehicleStatus.DRIVING);
+ 			free_drivers--;
+ 			driver_pool.execute(new Driver(id, distance));
+ 			return true;
  		}
  		
  		return false;
+ 	}
+ 	
+ 	public void EndTestDrive(int id, float distance)
+ 	{
+ 		Vehicle ref = GetVehicle(id);
+ 		
+ 		ref.Move(distance);
+ 		((StatusDecorator)ref).SetStatus(VehicleStatus.AVAILABLE);
+ 		free_drivers++;
  	}
  	
  	public EventService GetEventService()
