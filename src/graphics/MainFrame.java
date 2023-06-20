@@ -21,13 +21,27 @@ import Transportation.Vehicle;
  */
 public class MainFrame extends JFrame implements iEventHandler
 {
+	private static MainFrame instance;
+	
 	private ImagesContainer images_container;
 	private JPanel images_panel;
 	
 	/**
+	 * Method for retrieving singleton MainFrame instance.
+	 * 
+	 * @return MainFrame singleton reference.
+	 */
+	public static MainFrame GetInstance()
+	{
+		if (instance == null)
+			instance = new MainFrame();
+		return instance;
+	}
+	
+	/**
 	 * Constructor for the MainFrame class.
 	 */
-	public MainFrame()
+	private MainFrame()
 	{
 		super("Transportation Agency");
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
