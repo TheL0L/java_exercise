@@ -20,6 +20,18 @@ public class Frigate extends NavalVehicle implements iMotorized
 		this.engine_life_expectancy = 4;
 	}
 	
+	/**
+	 * Copy constructor for class Frigate
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public Frigate(Frigate other)
+	{
+		super(other);
+		this.fuel_consumption = other.fuel_consumption;
+		this.engine_life_expectancy = other.engine_life_expectancy;
+	}
+	
 	@Override
 	public void SetMotorLife(float value)
 	{

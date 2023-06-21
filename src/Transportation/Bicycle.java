@@ -14,6 +14,16 @@ public class Bicycle extends LandVehicle implements iNonMotorized
 	{
 		super(model_name, max_speed, max_seats, 2, road_type);
 	}
+	
+	/**
+	 * Copy constructor for class Bicycle
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public Bicycle(Bicycle other)
+	{
+		super(other);
+	}
 
 	@Override
 	public String GetPowerSource()

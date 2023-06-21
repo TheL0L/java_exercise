@@ -22,6 +22,17 @@ public abstract class AerialVehicle extends Vehicle
 		super(model_name, max_speed, max_seats);
 		this.usage = usage;
 	}
+	
+	/**
+	 * Copy constructor for class AerialVehicle
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public AerialVehicle(AerialVehicle other)
+	{
+		super(other);
+		this.usage = other.usage;
+	}
 
 	/**
 	 * method for update the vehicle usage type.

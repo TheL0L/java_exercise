@@ -32,6 +32,20 @@ public class AmphibiousVehicle extends Vehicle implements iMotorized
 		this.fuel_consumption = fuel_consumption;
 		this.engine_life_expectancy = engine_life_expectancy;
 	}
+	
+	/**
+	 * Copy constructor for class AmphibiousVehicle
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public AmphibiousVehicle(AmphibiousVehicle other)
+	{
+		super(other);
+		this.land_vehicle = new LandVehicle(other.land_vehicle) {};
+		this.naval_vehicle = new NavalVehicle(other.naval_vehicle) {};
+		this.fuel_consumption = other.fuel_consumption;
+		this.engine_life_expectancy = other.engine_life_expectancy;
+	}
 
 	@Override
 	public float GetAvgFuel()

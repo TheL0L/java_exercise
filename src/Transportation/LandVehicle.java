@@ -27,6 +27,18 @@ public abstract class LandVehicle extends Vehicle
 	}
 	
 	/**
+	 * Copy constructor for class LandVehicle
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public LandVehicle(LandVehicle other)
+	{
+		super(other);
+		this.wheels_count = other.wheels_count;
+		this.road_type = other.road_type;
+	}
+	
+	/**
 	 * Method for retrieving vehicle's wheels count.
 	 * @return integer value of the wheels count.
 	 */

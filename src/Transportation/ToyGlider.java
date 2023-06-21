@@ -15,6 +15,18 @@ public class ToyGlider extends AerialVehicle implements iNonMotorized
 		this.power_source = "manual";
 	}
 	
+	/**
+	 * Copy constructor for class ToyGlider
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public ToyGlider(ToyGlider other)
+	{
+		super(other);
+		this.energy_score = other.energy_score;
+		this.power_source = other.power_source;
+	}
+	
 	@Override
 	public char GetEnergyScore()
 	{

@@ -20,6 +20,18 @@ public class Jeep extends LandVehicle implements iMotorized, iCommercial
 		this.engine_life_expectancy = engine_life_expectancy;
 	}
 	
+	/**
+	 * Copy constructor for class Jeep
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public Jeep(Jeep other)
+	{
+		super(other);
+		this.fuel_consumption = other.fuel_consumption;
+		this.engine_life_expectancy = other.engine_life_expectancy;
+	}
+	
 	@Override
 	public String GetCommercialUsage()
 	{

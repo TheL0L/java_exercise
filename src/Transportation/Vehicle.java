@@ -23,6 +23,19 @@ public abstract class Vehicle
 	}
 	
 	/**
+	 * Copy constructor for class Vehicle
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public Vehicle(Vehicle other)
+	{
+		this.model_name = other.model_name;
+		this.max_speed = other.max_speed;
+		this.max_seats = other.max_seats;
+		this.total_distance = other.total_distance;
+	}
+	
+	/**
 	 * Method for moving the vehicle a certain distance.
 	 * 
 	 * @param distance  the distance to travel.

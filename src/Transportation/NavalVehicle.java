@@ -20,6 +20,18 @@ public abstract class NavalVehicle extends Vehicle
 		this.swimming_with_wind = swimming_with_wind;
 		this.Country = Country;
 	}
+	
+	/**
+	 * Copy constructor for class NavalVehicle
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public NavalVehicle(NavalVehicle other)
+	{
+		super(other);
+		this.swimming_with_wind = other.swimming_with_wind;
+		this.Country = other.Country;
+	}
 
 	/**
 	 * method that update if the vehicle's direction with or against the wind.

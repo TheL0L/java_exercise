@@ -16,6 +16,18 @@ public class SpyGlider extends AerialVehicle implements iNonMotorized
 		this.power_source = power_source;
 	}
 	
+	/**
+	 * Copy constructor for class SpyGlider
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public SpyGlider(SpyGlider other)
+	{
+		super(other);
+		this.energy_score = other.energy_score;
+		this.power_source = other.power_source;
+	}
+	
 	@Override
 	public char GetEnergyScore()
 	{

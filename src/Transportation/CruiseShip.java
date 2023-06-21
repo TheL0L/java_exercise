@@ -21,6 +21,18 @@ public class CruiseShip extends NavalVehicle implements iMotorized, iCommercial
 		this.fuel_consumption = fuel_consumption;
 		this.engine_life_expectancy = engine_life_expectancy;
 	}
+	
+	/**
+	 * Copy constructor for class CruiseShip
+	 * 
+	 * @param other  the copied vehicle.
+	 */
+	public CruiseShip(CruiseShip other)
+	{
+		super(other);
+		this.fuel_consumption = other.fuel_consumption;
+		this.engine_life_expectancy = other.engine_life_expectancy;
+	}
 
 	@Override
 	public String GetCommercialUsage()
