@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +13,12 @@ import javax.swing.JTextField;
 
 import Agency.AgencyManager;
 import Transportation.*;
+import Transportation.decorators.ColorDecorator;
+import Transportation.decorators.StatusDecorator;
+import Transportation.decorators.StatusDecorator.VehicleStatus;
+import Transportation.factories.JeepBuilder;
+import Transportation.factories.VehicleFactory;
+import Transportation.factories.AbstractFactory.VehicleType;
 
 /**
  * A preset JFrame extension class for adding Jeep to the agency.
@@ -88,8 +95,16 @@ public class JeepCreationFrame extends JFrame
 						
 						if ( fspeed >= 0 && ffuel >= 0 && fengine >= 0 )
 						{
-							Vehicle v = new Jeep(model, ffuel, fspeed, fengine);
-							AgencyManager.GetInstance().AddVehicle(v, images_container.GetSelectedImage());
+							VehicleFactory factory = new VehicleFactory();
+							JeepBuilder builder = (JeepBuilder) factory.Make(VehicleType.Jeep);
+							builder.SetModel(model);
+							builder.SetSpeed(fspeed);
+							builder.SetFuelConsumption(ffuel);
+							builder.SetEngineLife(fengine);
+							Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							
+							//Vehicle v = new Jeep(model, ffuel, fspeed, fengine);
+							AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());
 							JeepCreationFrame.this.dispose();
 							return;
 						}

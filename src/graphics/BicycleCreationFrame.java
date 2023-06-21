@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +14,10 @@ import javax.swing.JTextField;
 
 import Agency.AgencyManager;
 import Transportation.*;
-import Transportation.LandVehicle.RoadType;
+import Transportation.decorators.*;
+import Transportation.decorators.StatusDecorator.VehicleStatus;
+import Transportation.factories.*;
+import Transportation.factories.AbstractFactory.VehicleType;
 
 /**
  * A preset JFrame extension class for adding Bicycle to the agency.
@@ -90,8 +94,15 @@ public class BicycleCreationFrame extends JFrame
 						
 						if ( fspeed >= 0 && iseats >= 0 )
 						{
-							Vehicle v = new Bicycle(model, fspeed, iseats, RoadType.values()[road]);
-							AgencyManager.GetInstance().AddVehicle(v, images_container.GetSelectedImage());
+							VehicleFactory factory = new VehicleFactory();
+							BicycleBuilder builder = (BicycleBuilder) factory.Make(VehicleType.Bicycle);
+							builder.SetModel(model);
+							builder.SetSpeed(fspeed);
+							builder.SetSeats(iseats);
+							Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							
+							//Vehicle v = new Bicycle(model, fspeed, iseats, RoadType.values()[road]);
+							AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());
 							BicycleCreationFrame.this.dispose();
 							return;
 						}

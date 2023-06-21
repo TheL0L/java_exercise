@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +14,11 @@ import javax.swing.JTextField;
 
 import Agency.AgencyManager;
 import Transportation.*;
+import Transportation.decorators.*;
+import Transportation.decorators.StatusDecorator.VehicleStatus;
+import Transportation.factories.AbstractFactory.VehicleType;
+import Transportation.factories.ToyGliderBuilder;
+import Transportation.factories.VehicleFactory;
 
 /**
  * A preset JFrame extension class for adding ToyGlider to the agency.
@@ -61,8 +67,12 @@ public class ToyGliderCreationFrame extends JFrame
 				
 				if (id != -1)
 				{
-					Vehicle v = new ToyGlider();
-					AgencyManager.GetInstance().AddVehicle(v, images_container.GetSelectedImage());
+					VehicleFactory factory = new VehicleFactory();
+					ToyGliderBuilder builder = (ToyGliderBuilder) factory.Make(VehicleType.ToyGlider);
+					Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+					
+					//Vehicle v = new ToyGlider();
+					AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());
 					ToyGliderCreationFrame.this.dispose();
 					return;
 				}

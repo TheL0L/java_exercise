@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +14,10 @@ import javax.swing.JTextField;
 
 import Agency.AgencyManager;
 import Transportation.*;
-import Transportation.LandVehicle.RoadType;
+import Transportation.decorators.*;
+import Transportation.decorators.StatusDecorator.VehicleStatus;
+import Transportation.factories.*;
+import Transportation.factories.AbstractFactory.VehicleType;
 
 /**
  * A preset JFrame extension class for adding ElectricBicycle to the agency.
@@ -100,8 +104,17 @@ public class ElectricBicycleCreationFrame extends JFrame
 						
 						if ( fspeed >= 0 && iseats >= 0 && ffuel >= 0 && fengine >= 0 )
 						{
-							Vehicle v = new ElectricBicycle(model, fspeed, iseats, RoadType.values()[road], ffuel, fengine);
-							AgencyManager.GetInstance().AddVehicle(v, images_container.GetSelectedImage());
+							VehicleFactory factory = new VehicleFactory();
+							ElectricBicycleBuilder builder = (ElectricBicycleBuilder) factory.Make(VehicleType.ElectricBicycle);
+							builder.SetModel(model);
+							builder.SetSpeed(fspeed);
+							builder.SetSeats(iseats);
+							builder.SetFuelConsumption(ffuel);
+							builder.SetEngineLife(fengine);
+							Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							
+							//Vehicle v = new ElectricBicycle(model, fspeed, iseats, RoadType.values()[road], ffuel, fengine);
+							AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());
 							ElectricBicycleCreationFrame.this.dispose();
 							return;
 						}

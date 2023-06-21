@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +14,11 @@ import javax.swing.JTextField;
 
 import Agency.AgencyManager;
 import Transportation.*;
+import Transportation.decorators.*;
+import Transportation.decorators.StatusDecorator.VehicleStatus;
+import Transportation.factories.VehicleFactory;
+import Transportation.factories.AbstractFactory.VehicleType;
+import Transportation.factories.SpyGliderBuilder;
 
 /**
  * A preset JFrame extension class for adding SpyGlider to the agency.
@@ -69,8 +75,13 @@ public class SpyGliderCreationFrame extends JFrame
 				{
 					if ( !source.isBlank() )
 					{
-						Vehicle v = new SpyGlider(source);
-						AgencyManager.GetInstance().AddVehicle(v, images_container.GetSelectedImage());
+						VehicleFactory factory = new VehicleFactory();
+						SpyGliderBuilder builder = (SpyGliderBuilder) factory.Make(VehicleType.SpyGlider);
+						builder.SetPowerSource(source);
+						Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+						
+						//Vehicle v = new SpyGlider(source);
+						AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());
 						SpyGliderCreationFrame.this.dispose();
 						return;
 					}

@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +14,10 @@ import javax.swing.JTextField;
 
 import Agency.AgencyManager;
 import Transportation.*;
+import Transportation.decorators.*;
+import Transportation.decorators.StatusDecorator.VehicleStatus;
+import Transportation.factories.*;
+import Transportation.factories.AbstractFactory.VehicleType;
 
 /**
  * A preset JFrame extension class for adding HybridPlaneCreationFrame to the agency.
@@ -111,8 +116,20 @@ public class HybridPlaneCreationFrame extends JFrame
 						
 						if ( fspeed >= 0 && ffuel >= 0 && fengine >= 0 && iseats >= 0 && iwheels >= 0 )
 						{
-							Vehicle v = new HybridPlane(model, fspeed, iseats, iwheels, direction, flag, ffuel, fengine);
-							AgencyManager.GetInstance().AddVehicle(v, images_container.GetSelectedImage());
+							VehicleFactory factory = new VehicleFactory();
+							HybridPlaneBuilder builder = (HybridPlaneBuilder) factory.Make(VehicleType.HybridPlane);
+							builder.SetModel(model);
+							builder.SetSpeed(fspeed);
+							builder.SetSeats(iseats);
+							builder.SetWheelsCount(iwheels);
+							builder.SetDirection(direction);
+							builder.SetFlag(flag);
+							builder.SetFuelConsumption(ffuel);
+							builder.SetEngineLife(fengine);
+							Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							
+							//Vehicle v = new HybridPlane(model, fspeed, iseats, iwheels, direction, flag, ffuel, fengine);
+							AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());
 							HybridPlaneCreationFrame.this.dispose();
 							return;
 						}
