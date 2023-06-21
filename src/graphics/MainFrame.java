@@ -8,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import Agency.AgencyManager;
@@ -25,6 +26,8 @@ public class MainFrame extends JFrame implements iEventHandler
 	
 	private ImagesContainer images_container;
 	private JPanel images_panel;
+	
+	private GuiElement total_distance_element;
 	
 	/**
 	 * Method for retrieving singleton MainFrame instance.
@@ -49,7 +52,10 @@ public class MainFrame extends JFrame implements iEventHandler
 		AgencyManager agm = AgencyManager.GetInstance();
 		agm.GetEventService().Subscribe(this);
 		
-		this.add(new JLabel("Available Vehicles:"));
+		total_distance_element = new GuiElement("Total Distance Test-Driven: ", new JLabel("0 km"));
+		this.add(total_distance_element);
+		
+		this.add(new GuiElement("Available Vehicles:", new JLabel("")));
 		images_panel = new JPanel();
 		CreateImagesContainer();
 		this.add(images_panel);
@@ -140,9 +146,13 @@ public class MainFrame extends JFrame implements iEventHandler
 			break;
 			
 		case TEST_DRIVE:
+			((JLabel) this.total_distance_element.GetComponent()).setText(
+					AgencyManager.GetInstance().GetTotalDistance() + " km"
+			);
+			break;
 		case FLAG_CHANGE:
 		}
 		UpdateFrame();
-		System.out.println("MainFrame Update() called by event:" + event.name());
+		//System.out.println("MainFrame Update() called by event:" + event.name());
 	}
 }

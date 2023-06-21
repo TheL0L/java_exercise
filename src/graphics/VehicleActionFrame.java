@@ -7,6 +7,7 @@ import javax.swing.*;
 import Agency.AgencyManager;
 import Agency.Event;
 import Agency.EventPerformer;
+import Agency.iEventHandler;
 import Transportation.AmphibiousVehicle;
 import Transportation.NavalVehicle;
 import Transportation.Vehicle;
@@ -14,10 +15,12 @@ import Transportation.Vehicle;
 /**
  * A preset JFrame extension class for presenting available actions.
  */
-public class VehicleActionFrame extends JFrame
+public class VehicleActionFrame extends JFrame implements iEventHandler
 {
 	private int vehicle_id;
 	private EventPerformer event_performer;
+	
+	private JTextArea text;
 	
 	/**
 	 * Constructor for the VehicleActionFrame class.
@@ -34,10 +37,12 @@ public class VehicleActionFrame extends JFrame
         setLayout(new BorderLayout());
         
         this.vehicle_id = vehicle_id;
-        this.event_performer = new EventPerformer(AgencyManager.GetInstance().GetEventService());
+        AgencyManager agm = AgencyManager.GetInstance();
+        this.event_performer = new EventPerformer(agm.GetEventService());
+        agm.GetEventService().Subscribe(this);
         
         JPanel description = new JPanel();
-        JTextArea text = new JTextArea(prompt);
+        this.text = new JTextArea(prompt);
         text.setEditable(false);
         
         description.add(new ImageButton(image, null, 100, 100));
@@ -58,7 +63,7 @@ public class VehicleActionFrame extends JFrame
         this.setLocationRelativeTo(null);
         setVisible(true);
         
-        Vehicle ref = AgencyManager.GetInstance().GetVehicle(vehicle_id);
+        Vehicle ref = agm.GetVehicle(vehicle_id);
         if (!(ref instanceof NavalVehicle) && !(ref instanceof AmphibiousVehicle))
         {
         	bflag.setEnabled(false);
@@ -75,7 +80,6 @@ public class VehicleActionFrame extends JFrame
             	event_performer.NotifyService(vehicle_id, Event.TEST_DRIVE);
             	
             	AnnoyingDatabaseDelayWindow();
-                dispose();
             }
         });
         bflag.addActionListener(new ActionListener() {
@@ -87,7 +91,6 @@ public class VehicleActionFrame extends JFrame
             	event_performer.NotifyService(vehicle_id, Event.FLAG_CHANGE);
             	
             	AnnoyingDatabaseDelayWindow();
-                dispose();
             }
         });
         bbuy.addActionListener(new ActionListener() {
@@ -145,7 +148,26 @@ public class VehicleActionFrame extends JFrame
 			"Updating database, please wait [5-8] non-imaginary seconds, why? no idea...",
 			interval
 		);
-    	
-        dispose();
     }
+
+	@Override
+	public void Update(int unique_id, Event event)
+	{
+		if (unique_id != this.vehicle_id)
+			return;
+		
+		switch (event)
+		{
+		case PURCHASE:
+			this.dispose();
+			break;
+			
+		case TEST_DRIVE:
+		case FLAG_CHANGE:
+			this.text.setText(AgencyManager.GetInstance().GetVehicleDescription(unique_id));
+			break;
+		}
+		
+		this.repaint();
+	}
 }

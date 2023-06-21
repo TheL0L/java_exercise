@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 import Transportation.*;
 import Transportation.decorators.StatusDecorator;
 import Transportation.decorators.StatusDecorator.VehicleStatus;
+import graphics.MainFrame;
 
 /**
  * Singleton class for managing vehicles in an agency.
@@ -50,6 +51,8 @@ public class AgencyManager
 	private int free_drivers;
 	private ExecutorService driver_pool;
 	
+	private float total_distance;
+	
 	/**
 	 * Constructor for AgencyManager class.
 	 */
@@ -59,6 +62,7 @@ public class AgencyManager
 		service = new EventService();
 		driver_pool = Executors.newFixedThreadPool(drivers_count);
 		free_drivers = drivers_count;
+		total_distance = 0;
 	}
 	
 	/**
@@ -304,10 +308,18 @@ public class AgencyManager
  		ref.Move(distance);
  		((StatusDecorator)ref).SetStatus(VehicleStatus.AVAILABLE);
  		free_drivers++;
+ 		
+ 		total_distance += distance;
+ 		service.Update(id, Event.TEST_DRIVE);
  	}
  	
  	public EventService GetEventService()
  	{
  		return this.service;
+ 	}
+
+ 	public float GetTotalDistance()
+ 	{
+ 		return total_distance;
  	}
 }
