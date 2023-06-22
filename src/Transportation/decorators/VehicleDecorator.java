@@ -1,22 +1,21 @@
 package Transportation.decorators;
 
-import Transportation.Vehicle;
+import Transportation.iVehicle;
 
 /**
  * Base decorator class for Vehicle types.
  */
-public abstract class VehicleDecorator extends Vehicle
+public abstract class VehicleDecorator implements iVehicle
 {
-	private Vehicle vehicle;
-
+	protected iVehicle vehicle;
+	
 	/**
 	 * Constructor for VehicleDecorator class.
 	 * 
 	 * @param vehicle  the vehicle to be decorated.
 	 */
-    public VehicleDecorator(Vehicle vehicle)
+    public VehicleDecorator(iVehicle vehicle)
     {
-        super(vehicle.GetModelName(), vehicle.GetMaxSpeed(), vehicle.GetMaxSeats());
         this.vehicle = vehicle;
     }
 
@@ -25,4 +24,40 @@ public abstract class VehicleDecorator extends Vehicle
     {
         return vehicle.toString();
     }
+
+	@Override
+	public void Move(float distance)
+	{
+		vehicle.Move(distance);
+	}
+
+	@Override
+	public String GetModelName()
+	{
+		return vehicle.GetModelName();
+	}
+
+	@Override
+	public float GetMaxSpeed()
+	{
+		return vehicle.GetMaxSpeed();
+	}
+
+	@Override
+	public int GetMaxSeats()
+	{
+		return vehicle.GetMaxSeats();
+	}
+
+	@Override
+	public float GetTotalDistance()
+	{
+		return vehicle.GetTotalDistance();
+	}
+
+	@Override
+	public void ResetTravelDistance()
+	{
+		vehicle.ResetTravelDistance();
+	}
 }

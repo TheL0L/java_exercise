@@ -1,6 +1,7 @@
 package Transportation.decorators;
 
 import Transportation.Vehicle;
+import Transportation.iVehicle;
 
 /**
  * Status decorator class for Vehicle types.
@@ -20,7 +21,7 @@ public class StatusDecorator extends VehicleDecorator
 	 * @param vehicle  the vehicle to be decorated.
 	 * @param status   the intended vehicle status.
 	 */
-    public StatusDecorator(Vehicle vehicle, VehicleStatus status)
+    public StatusDecorator(iVehicle vehicle, VehicleStatus status)
     {
         super(vehicle);
         this.status = status;

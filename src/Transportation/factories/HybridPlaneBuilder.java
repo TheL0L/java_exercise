@@ -58,6 +58,9 @@ public class HybridPlaneBuilder extends AbstractBuilder
 	@Override
 	public Vehicle Build()
 	{
-		return new HybridPlane(model_name, speed, seats, wheels_count, with_wind, flag, fuel, engine_life);
+		Vehicle product = new HybridPlane(model_name, speed, seats, wheels_count, with_wind, flag, fuel, engine_life);
+		product.SetColor(color);
+		product.SetStatus(status);
+		return product;
 	}
 }

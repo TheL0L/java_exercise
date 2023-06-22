@@ -115,7 +115,10 @@ public class CruiseShipCreationFrame extends JFrame
 							builder.SetFlag(flag);
 							builder.SetFuelConsumption(ffuel);
 							builder.SetEngineLife(fengine);
-							Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							builder.SetStatus(VehicleStatus.AVAILABLE);
+							builder.SetColor(Color.BLACK);
+							Vehicle test = builder.Build();
 							
 							//Vehicle v = new CruiseShip(model, fspeed, iseats, flag, ffuel, fengine);
 							AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());

@@ -100,7 +100,10 @@ public class FrigateCreationFrame extends JFrame
 							builder.SetSpeed(fspeed);
 							builder.SetSeats(iseats);
 							builder.SetDirection(direction);
-							Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							builder.SetStatus(VehicleStatus.AVAILABLE);
+							builder.SetColor(Color.BLACK);
+							Vehicle test = builder.Build();
 							
 							//Vehicle v = new Frigate(model, fspeed, iseats, direction);
 							AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());

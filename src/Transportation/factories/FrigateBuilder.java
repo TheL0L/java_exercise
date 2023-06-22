@@ -19,6 +19,9 @@ public class FrigateBuilder extends AbstractBuilder
 	@Override
 	public Vehicle Build()
 	{
-		return new Frigate(model_name, speed, seats, with_wind);
+		Vehicle product = new Frigate(model_name, speed, seats, with_wind);
+		product.SetColor(color);
+		product.SetStatus(status);
+		return product;
 	}
 }

@@ -69,10 +69,13 @@ public class ToyGliderCreationFrame extends JFrame
 				{
 					VehicleFactory factory = new VehicleFactory();
 					ToyGliderBuilder builder = (ToyGliderBuilder) factory.Make(VehicleType.ToyGlider);
-					Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+					//iVehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+					builder.SetStatus(VehicleStatus.AVAILABLE);
+					builder.SetColor(Color.BLACK);
+					Vehicle test = builder.Build();
 					
 					//Vehicle v = new ToyGlider();
-					AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());
+					AgencyManager.GetInstance().AddVehicle((Vehicle)test, images_container.GetSelectedImage());
 					ToyGliderCreationFrame.this.dispose();
 					return;
 				}

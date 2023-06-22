@@ -1,6 +1,8 @@
 package Transportation.decorators;
 
 import Transportation.Vehicle;
+import Transportation.iVehicle;
+
 import java.awt.Color;
 
 /**
@@ -16,7 +18,7 @@ public class ColorDecorator extends VehicleDecorator
 	 * @param vehicle  the vehicle to be decorated.
 	 * @param color    the intended vehicle color.
 	 */
-    public ColorDecorator(Vehicle vehicle, Color color)
+    public ColorDecorator(iVehicle vehicle, Color color)
     {
         super(vehicle);
         this.color = color;

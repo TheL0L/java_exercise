@@ -99,7 +99,10 @@ public class BicycleCreationFrame extends JFrame
 							builder.SetModel(model);
 							builder.SetSpeed(fspeed);
 							builder.SetSeats(iseats);
-							Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							builder.SetStatus(VehicleStatus.AVAILABLE);
+							builder.SetColor(Color.BLACK);
+							Vehicle test = builder.Build();
 							
 							//Vehicle v = new Bicycle(model, fspeed, iseats, RoadType.values()[road]);
 							AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());

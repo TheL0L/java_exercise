@@ -8,6 +8,9 @@ public class ToyGliderBuilder extends AbstractBuilder
 	@Override
 	public Vehicle Build()
 	{
-		return new ToyGlider();
+		Vehicle product = new ToyGlider();
+		product.SetColor(color);
+		product.SetStatus(status);
+		return product;
 	}
 }

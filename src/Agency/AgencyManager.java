@@ -290,9 +290,9 @@ public class AgencyManager
  		if (ref == null)
  			return false;
  		
- 		if (free_drivers > 0 && ((StatusDecorator)ref).GetStatus() == VehicleStatus.AVAILABLE)
+ 		if (free_drivers > 0 && ref.GetStatus() == VehicleStatus.AVAILABLE)
  		{
- 			((StatusDecorator)ref).SetStatus(VehicleStatus.DRIVING);
+ 			ref.SetStatus(VehicleStatus.DRIVING);
  			free_drivers--;
  			driver_pool.execute(new Driver(id, distance));
  			return true;
@@ -306,7 +306,7 @@ public class AgencyManager
  		Vehicle ref = GetVehicle(id);
  		
  		ref.Move(distance);
- 		((StatusDecorator)ref).SetStatus(VehicleStatus.AVAILABLE);
+ 		ref.SetStatus(VehicleStatus.AVAILABLE);
  		free_drivers++;
  		
  		total_distance += distance;

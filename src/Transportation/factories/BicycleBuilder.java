@@ -20,6 +20,9 @@ public class BicycleBuilder extends AbstractBuilder
 	@Override
 	public Vehicle Build()
 	{
-		return new Bicycle(model_name, speed, seats, road_type);
+		Vehicle product = new Bicycle(model_name, speed, seats, road_type);
+		product.SetColor(color);
+		product.SetStatus(status);
+		return product;
 	}
 }

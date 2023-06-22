@@ -39,6 +39,9 @@ public class ElectricBicycleBuilder extends AbstractBuilder
 	@Override
 	public Vehicle Build()
 	{
-		return new ElectricBicycle(model_name, speed, seats, road_type, fuel, engine_life);
+		Vehicle product = new ElectricBicycle(model_name, speed, seats, road_type, fuel, engine_life);
+		product.SetColor(color);
+		product.SetStatus(status);
+		return product;
 	}
 }

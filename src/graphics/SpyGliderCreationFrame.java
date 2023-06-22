@@ -78,7 +78,10 @@ public class SpyGliderCreationFrame extends JFrame
 						VehicleFactory factory = new VehicleFactory();
 						SpyGliderBuilder builder = (SpyGliderBuilder) factory.Make(VehicleType.SpyGlider);
 						builder.SetPowerSource(source);
-						Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+						//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+						builder.SetStatus(VehicleStatus.AVAILABLE);
+						builder.SetColor(Color.BLACK);
+						Vehicle test = builder.Build();
 						
 						//Vehicle v = new SpyGlider(source);
 						AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());

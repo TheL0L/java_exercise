@@ -28,6 +28,9 @@ public class JeepBuilder extends AbstractBuilder
 	@Override
 	public Vehicle Build()
 	{
-		return new Jeep(model_name, fuel, speed, engine_life);
+		Vehicle product = new Jeep(model_name, fuel, speed, engine_life);
+		product.SetColor(color);
+		product.SetStatus(status);
+		return product;
 	}
 }

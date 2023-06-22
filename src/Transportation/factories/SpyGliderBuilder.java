@@ -19,6 +19,9 @@ public class SpyGliderBuilder extends AbstractBuilder
 	@Override
 	public Vehicle Build()
 	{
-		return new SpyGlider(power_source);
+		Vehicle product = new SpyGlider(power_source);
+		product.SetColor(color);
+		product.SetStatus(status);
+		return product;
 	}
 }

@@ -38,6 +38,9 @@ public class CruiseShipBuilder extends AbstractBuilder
 	@Override
 	public Vehicle Build()
 	{
-		return new CruiseShip(model_name, speed, seats, flag, fuel, engine_life);
+		Vehicle product = new CruiseShip(model_name, speed, seats, flag, fuel, engine_life);
+		product.SetColor(color);
+		product.SetStatus(status);
+		return product;
 	}
 }

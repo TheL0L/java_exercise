@@ -101,7 +101,10 @@ public class JeepCreationFrame extends JFrame
 							builder.SetSpeed(fspeed);
 							builder.SetFuelConsumption(ffuel);
 							builder.SetEngineLife(fengine);
-							Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
+							builder.SetStatus(VehicleStatus.AVAILABLE);
+							builder.SetColor(Color.BLACK);
+							Vehicle test = builder.Build();
 							
 							//Vehicle v = new Jeep(model, ffuel, fspeed, fengine);
 							AgencyManager.GetInstance().AddVehicle(test, images_container.GetSelectedImage());

@@ -1,11 +1,18 @@
 package Transportation;
 
-public abstract class Vehicle
+import java.awt.Color;
+
+import Transportation.decorators.StatusDecorator.VehicleStatus;
+
+public abstract class Vehicle //implements iVehicle
 {
 	private String model_name;
 	private float max_speed;
 	private int max_seats;
 	private float total_distance;
+	
+	private Color color;
+	private VehicleStatus status;
 	
 	/**
 	 * Constructor for class Vehicle
@@ -20,6 +27,9 @@ public abstract class Vehicle
 		this.max_speed = max_speed;
 		this.max_seats = max_seats;
 		this.total_distance = 0;
+		
+		this.color = Color.BLACK;
+		this.status = VehicleStatus.AVAILABLE;
 	}
 	
 	/**
@@ -125,7 +135,8 @@ public abstract class Vehicle
 	public String toString()
 	{
 		return "Model: " + this.GetModelName() + ", Traveled: " + this.GetTotalDistance()
-			+ " km, Max speed: " + this.GetMaxSpeed() + " km/h, Seats: " + this.GetMaxSeats();
+			+ " km, Max speed: " + this.GetMaxSpeed() + " km/h, Seats: " + this.GetMaxSeats()
+			+ ", Color: " + this.GetColor() + ", Status: " + this.GetStatus().name();
 	}
 	
 	/**
@@ -134,5 +145,25 @@ public abstract class Vehicle
 	public void ResetTravelDistance()
 	{
 		this.total_distance = 0;
+	}
+	
+	public Color GetColor()
+	{
+		return this.color;
+	}
+	
+	public VehicleStatus GetStatus()
+	{
+		return this.status;
+	}
+	
+	public void SetColor(Color color)
+	{
+		this.color = color;
+	}
+	
+	public void SetStatus(VehicleStatus status)
+	{
+		this.status = status;
 	}
 }
