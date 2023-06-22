@@ -1,3 +1,3 @@
 package Agency;
 
-public enum Event { PURCHASE, TEST_DRIVE, FLAG_CHANGE };
+public enum Event { STARTED_PURCHASE, CANCELED_PURCHASE, TEST_DRIVE, FLAG_CHANGE, BOUGHT };

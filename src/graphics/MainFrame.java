@@ -139,7 +139,7 @@ public class MainFrame extends JFrame implements iEventHandler
 	{
 		switch (event)
 		{
-		case PURCHASE:
+		case BOUGHT:
 			this.images_panel.remove(images_container);
 			this.CreateImagesContainer();
 			this.images_panel.repaint();
@@ -150,7 +150,10 @@ public class MainFrame extends JFrame implements iEventHandler
 					AgencyManager.GetInstance().GetTotalDistance() + " km"
 			);
 			break;
+			
 		case FLAG_CHANGE:
+		case STARTED_PURCHASE:
+		case CANCELED_PURCHASE:
 		}
 		UpdateFrame();
 		//System.out.println("MainFrame Update() called by event:" + event.name());

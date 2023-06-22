@@ -11,6 +11,7 @@ import Agency.iEventHandler;
 import Transportation.AmphibiousVehicle;
 import Transportation.NavalVehicle;
 import Transportation.Vehicle;
+import Transportation.decorators.StatusDecorator.VehicleStatus;
 
 /**
  * A preset JFrame extension class for presenting available actions.
@@ -21,6 +22,7 @@ public class VehicleActionFrame extends JFrame implements iEventHandler
 	private EventPerformer event_performer;
 	
 	private JTextArea text;
+	private JPanel buttons;
 	
 	/**
 	 * Constructor for the VehicleActionFrame class.
@@ -49,7 +51,7 @@ public class VehicleActionFrame extends JFrame implements iEventHandler
         description.add(text);
         add(description, BorderLayout.CENTER);
 
-        JPanel buttons = new JPanel();
+        buttons = new JPanel();
         JButton bdrive = new JButton("Test Drive");
         JButton bflag = new JButton("Change Flag");
         JButton bbuy = new JButton("Purchase");
@@ -58,6 +60,11 @@ public class VehicleActionFrame extends JFrame implements iEventHandler
         buttons.add(bflag);
         buttons.add(bbuy);
         add(buttons, BorderLayout.SOUTH);
+        
+        if (agm.GetVehicle(vehicle_id).GetStatus() == VehicleStatus.PURCHASING)
+        {
+        	this.buttons.setEnabled(false);
+        }
 
         pack();
         this.setLocationRelativeTo(null);
@@ -97,6 +104,11 @@ public class VehicleActionFrame extends JFrame implements iEventHandler
             @Override
             public void actionPerformed(ActionEvent e)
             {
+            	if (agm.GetVehicle(vehicle_id).GetStatus() != VehicleStatus.AVAILABLE)
+            		return;
+            	
+            	agm.GetVehicle(vehicle_id).SetStatus(VehicleStatus.PURCHASING);
+            	event_performer.NotifyService(vehicle_id, Event.STARTED_PURCHASE);
             	int interval = 5000 + (int)(Math.random() * 3000);
             	AnnoyingWait(interval);
             	
@@ -117,11 +129,16 @@ public class VehicleActionFrame extends JFrame implements iEventHandler
 					);
 	            	
 	            	AgencyManager.GetInstance().RemoveVehicle(vehicle_id);
-	            	event_performer.NotifyService(vehicle_id, Event.PURCHASE);
+	            	event_performer.NotifyService(vehicle_id, Event.BOUGHT);
 	                dispose();
 	            	
 	            	AnnoyingDatabaseDelayWindow();
 		        }
+		        else
+		        {
+		        	agm.GetVehicle(vehicle_id).SetStatus(VehicleStatus.AVAILABLE);
+		        	event_performer.NotifyService(vehicle_id, Event.CANCELED_PURCHASE);
+				}
             }
         });
     }
@@ -158,16 +175,22 @@ public class VehicleActionFrame extends JFrame implements iEventHandler
 		
 		switch (event)
 		{
-		case PURCHASE:
+		case BOUGHT:
 			this.dispose();
 			break;
 			
+		case STARTED_PURCHASE:
+			this.buttons.setEnabled(false);
+			break;
+		case CANCELED_PURCHASE:
+			this.buttons.setEnabled(true);
+			break;
+		
 		case TEST_DRIVE:
 		case FLAG_CHANGE:
-			this.text.setText(AgencyManager.GetInstance().GetVehicleDescription(unique_id));
-			break;
 		}
-		
+
+		this.text.setText(AgencyManager.GetInstance().GetVehicleDescription(unique_id));
 		this.repaint();
 	}
 }
