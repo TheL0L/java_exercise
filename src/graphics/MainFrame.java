@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Agency.AgencyManager;
@@ -52,12 +53,13 @@ public class MainFrame extends JFrame implements iEventHandler
 		AgencyManager agm = AgencyManager.GetInstance();
 		agm.GetEventService().Subscribe(this);
 		
-		total_distance_element = new GuiElement("Total Distance Test-Driven: ", new JLabel("0 km"));
+		total_distance_element = new GuiElement("Total Distance Test-Driven: ", new JLabel("0.0 km"));
 		this.add(total_distance_element);
 		
 		this.add(new GuiElement("Available Vehicles:", new JLabel("")));
 		images_panel = new JPanel();
 		CreateImagesContainer();
+		images_container.DrawBorders();
 		this.add(images_panel);
 		
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 15));
@@ -85,8 +87,53 @@ public class MainFrame extends JFrame implements iEventHandler
 			}
 		});
 
+		JButton bsave = new JButton("Save State");
+		bsave.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int result = agm.backup_save();
+				
+				JOptionPane.showMessageDialog(
+            			MainFrame.this,
+						"Backup saved! there are " + result + " backups.",
+						"Success",
+						JOptionPane.INFORMATION_MESSAGE
+					);
+			}
+		});
+		JButton bload = new JButton("Load State");
+		bload.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int result = agm.backup_load();
+				
+				if (result >= 0)
+				{
+					HardUpdateFrame();
+					
+					JOptionPane.showMessageDialog(
+	            			MainFrame.this,
+							"Backup loaded! there are " + result + " backups.",
+							"Success",
+							JOptionPane.INFORMATION_MESSAGE
+						);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(
+	            			MainFrame.this,
+							"No existing backups!",
+							"Failure",
+							JOptionPane.ERROR_MESSAGE
+						);
+				}
+			}
+		});
+		
 		buttons.add(breset);
 		buttons.add(bstock);
+		buttons.add(bsave);
+		buttons.add(bload);
 		buttons.add(bexit);
 		this.add(buttons);
 		
@@ -130,8 +177,21 @@ public class MainFrame extends JFrame implements iEventHandler
 	private void UpdateFrame()
 	{
 		images_container.UpdateTooltips();
+		images_container.DrawBorders();
 		images_container.repaint();
 		this.pack();
+	}
+	
+	private void HardUpdateFrame()
+	{
+		this.images_panel.remove(images_container);
+		CreateImagesContainer();
+		
+		((JLabel) this.total_distance_element.GetComponent()).setText(
+				AgencyManager.GetInstance().GetTotalDistance() + " km"
+		);
+		
+		UpdateFrame();
 	}
 
 	@Override

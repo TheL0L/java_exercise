@@ -44,6 +44,7 @@ public class HybridPlaneCreationFrame extends JFrame
 	private GuiElement field_wheels;
 	private GuiElement field_direction;
 	private GuiElement field_flag;
+	private GuiElement field_color;
 	
 	/**
 	 * Constructor for the HybridPlaneCreationFrame class.
@@ -71,6 +72,7 @@ public class HybridPlaneCreationFrame extends JFrame
 		field_wheels = new GuiElement("Wheels count:", new IntegerTextField(15));
 		field_direction = new GuiElement("Direction:", new JCheckBox("With Wind?"));
 		field_flag = new GuiElement("Flag:", new FlagPicker(0, 7, 30, 30));
+		field_color  = new GuiElement("Color:", new ColorPicker());
 		
 		
 		this.add(field_model);
@@ -81,6 +83,7 @@ public class HybridPlaneCreationFrame extends JFrame
 		this.add(field_wheels);
 		this.add(field_direction);
 		this.add(field_flag);
+		this.add(field_color);
 		
 		
 		JButton btn_add = new JButton("Add Hybrid Plane");
@@ -128,7 +131,7 @@ public class HybridPlaneCreationFrame extends JFrame
 							builder.SetEngineLife(fengine);
 							//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
 							builder.SetStatus(VehicleStatus.AVAILABLE);
-							builder.SetColor(Color.BLACK);
+							builder.SetColor(((ColorPicker)field_color.GetComponent()).GetColor());
 							Vehicle test = builder.Build();
 							
 							//Vehicle v = new HybridPlane(model, fspeed, iseats, iwheels, direction, flag, ffuel, fengine);

@@ -7,10 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.colorchooser.ColorSelectionModel;
+import javax.swing.event.ChangeListener;
 
 import Agency.AgencyManager;
 import Transportation.*;
@@ -38,6 +41,7 @@ public class SpyGliderCreationFrame extends JFrame
 	};
 	
 	private GuiElement field_source;
+	private GuiElement field_color;
 	
 	/**
 	 * Constructor for the SpyGliderCreationFrame class.
@@ -59,8 +63,10 @@ public class SpyGliderCreationFrame extends JFrame
 		
 		
 		field_source = new GuiElement("Power source:", new JTextField(15));
+		field_color  = new GuiElement("Color:", new ColorPicker());
 		
 		this.add(field_source);
+		this.add(field_color);
 		
 		
 		JButton btn_add = new JButton("Add Spy Glider");
@@ -80,7 +86,7 @@ public class SpyGliderCreationFrame extends JFrame
 						builder.SetPowerSource(source);
 						//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
 						builder.SetStatus(VehicleStatus.AVAILABLE);
-						builder.SetColor(Color.BLACK);
+						builder.SetColor(((ColorPicker)field_color.GetComponent()).GetColor());
 						Vehicle test = builder.Build();
 						
 						//Vehicle v = new SpyGlider(source);

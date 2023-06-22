@@ -41,6 +41,7 @@ public class JeepCreationFrame extends JFrame
 	private GuiElement field_speed;
 	private GuiElement field_fuel;
 	private GuiElement field_engine;
+	private GuiElement field_color;
 	
 	/**
 	 * Constructor for the JeepCreationFrame class.
@@ -65,11 +66,13 @@ public class JeepCreationFrame extends JFrame
 		field_speed = new GuiElement("Top speed:", new DecimalTextField(15));
 		field_fuel = new GuiElement("Fuel consumption:", new DecimalTextField(15));
 		field_engine = new GuiElement("Engine life:", new DecimalTextField(15));
+		field_color  = new GuiElement("Color:", new ColorPicker());
 		
 		this.add(field_model);
 		this.add(field_speed);
 		this.add(field_fuel);
 		this.add(field_engine);
+		this.add(field_color);
 		
 		
 		JButton btn_add = new JButton("Add Jeep");
@@ -103,7 +106,7 @@ public class JeepCreationFrame extends JFrame
 							builder.SetEngineLife(fengine);
 							//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
 							builder.SetStatus(VehicleStatus.AVAILABLE);
-							builder.SetColor(Color.BLACK);
+							builder.SetColor(((ColorPicker)field_color.GetComponent()).GetColor());
 							Vehicle test = builder.Build();
 							
 							//Vehicle v = new Jeep(model, ffuel, fspeed, fengine);

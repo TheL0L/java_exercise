@@ -40,6 +40,7 @@ public class BicycleCreationFrame extends JFrame
 	private GuiElement field_speed;
 	private GuiElement field_seats;
 	private GuiElement field_road;
+	private GuiElement field_color;
 	
 	/**
 	 * Constructor for the BicycleCreationFrame class.
@@ -64,11 +65,13 @@ public class BicycleCreationFrame extends JFrame
 		field_speed = new GuiElement("Top speed:", new DecimalTextField(15));
 		field_seats = new GuiElement("Max seats:", new IntegerTextField(15));
 		field_road = new GuiElement("Road type:", new RoadTypePicker());
+		field_color  = new GuiElement("Color:", new ColorPicker());
 		
 		this.add(field_model);
 		this.add(field_speed);
 		this.add(field_seats);
 		this.add(field_road);
+		this.add(field_color);
 		
 		
 		JButton btn_add = new JButton("Add Bicycle");
@@ -101,7 +104,7 @@ public class BicycleCreationFrame extends JFrame
 							builder.SetSeats(iseats);
 							//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
 							builder.SetStatus(VehicleStatus.AVAILABLE);
-							builder.SetColor(Color.BLACK);
+							builder.SetColor(((ColorPicker)field_color.GetComponent()).GetColor());
 							Vehicle test = builder.Build();
 							
 							//Vehicle v = new Bicycle(model, fspeed, iseats, RoadType.values()[road]);

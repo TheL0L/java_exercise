@@ -42,6 +42,7 @@ public class ElectricBicycleCreationFrame extends JFrame
 	private GuiElement field_road;
 	private GuiElement field_fuel;
 	private GuiElement field_engine;
+	private GuiElement field_color;
 	
 	/**
 	 * Constructor for the ElectricBicycleCreationFrame class.
@@ -68,6 +69,7 @@ public class ElectricBicycleCreationFrame extends JFrame
 		field_road = new GuiElement("Road type:", new RoadTypePicker());
 		field_fuel = new GuiElement("Fuel consumption:", new DecimalTextField(15));
 		field_engine = new GuiElement("Engine life:", new DecimalTextField(15));
+		field_color  = new GuiElement("Color:", new ColorPicker());
 		
 		this.add(field_model);
 		this.add(field_speed);
@@ -75,6 +77,7 @@ public class ElectricBicycleCreationFrame extends JFrame
 		this.add(field_road);
 		this.add(field_fuel);
 		this.add(field_engine);
+		this.add(field_color);
 		
 		
 		JButton btn_add = new JButton("Add Electric Bicycle");
@@ -113,7 +116,7 @@ public class ElectricBicycleCreationFrame extends JFrame
 							builder.SetEngineLife(fengine);
 							//Vehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
 							builder.SetStatus(VehicleStatus.AVAILABLE);
-							builder.SetColor(Color.BLACK);
+							builder.SetColor(((ColorPicker)field_color.GetComponent()).GetColor());
 							Vehicle test = builder.Build();
 							
 							//Vehicle v = new ElectricBicycle(model, fspeed, iseats, RoadType.values()[road], ffuel, fengine);

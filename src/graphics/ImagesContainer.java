@@ -8,6 +8,8 @@ import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import Agency.AgencyManager;
+
 /**
  * Class for holding click-able images in a grid, with the ability for selecting either of them.
  */
@@ -177,6 +179,21 @@ public class ImagesContainer extends JPanel
 		for (ImageButton image : this.images)
 		{
 			image.UpdateTooltip();
+		}
+	}
+	
+	public void DrawBorders()
+	{
+		if (this.selection_enabled == true)
+			return;
+		
+		int width = 4;
+		var ids = AgencyManager.GetInstance().GetVehicleIDs();
+		int size = Math.min( ids.size(), images.size() );
+		for (int i = 0; i < size; i++)
+		{
+			Color color = AgencyManager.GetInstance().GetVehicle(ids.elementAt(i)).GetColor();
+			images.elementAt(i).setBorder(BorderFactory.createLineBorder(color, width));
 		}
 	}
 }

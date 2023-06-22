@@ -37,7 +37,7 @@ public class ToyGliderCreationFrame extends JFrame
 		"Image 3"
 	};
 	
-	private GuiElement field_source;
+	private GuiElement field_color;
 	
 	/**
 	 * Constructor for the ToyGliderCreationFrame class.
@@ -57,6 +57,10 @@ public class ToyGliderCreationFrame extends JFrame
 		}
 		this.add(images_container);
 		
+
+		field_color  = new GuiElement("Color:", new ColorPicker());
+		
+		this.add(field_color);
 		
 		JButton btn_add = new JButton("Add Toy Glider");
 		btn_add.addActionListener(new ActionListener() {
@@ -71,7 +75,7 @@ public class ToyGliderCreationFrame extends JFrame
 					ToyGliderBuilder builder = (ToyGliderBuilder) factory.Make(VehicleType.ToyGlider);
 					//iVehicle test = new StatusDecorator(new ColorDecorator(builder.Build(), Color.BLACK), VehicleStatus.AVAILABLE);
 					builder.SetStatus(VehicleStatus.AVAILABLE);
-					builder.SetColor(Color.BLACK);
+					builder.SetColor(((ColorPicker)field_color.GetComponent()).GetColor());
 					Vehicle test = builder.Build();
 					
 					//Vehicle v = new ToyGlider();
