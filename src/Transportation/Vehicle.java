@@ -43,6 +43,9 @@ public abstract class Vehicle //implements iVehicle
 		this.max_speed = other.max_speed;
 		this.max_seats = other.max_seats;
 		this.total_distance = other.total_distance;
+		
+		this.color = other.color;
+		this.status = other.status;
 	}
 	
 	/**

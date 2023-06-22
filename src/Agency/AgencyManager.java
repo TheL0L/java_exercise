@@ -36,9 +36,21 @@ public class AgencyManager
 		{
 			unique_id++;
 			
-			this.vehicle = vehicle;
+			this.vehicle = new Vehicle(vehicle) {};
 			this.image = image;
 			this.id = unique_id;
+		}
+		
+		/**
+		 * Copy constructor for Entry class..
+		 * 
+		 * @param other  the copied Entry.
+		 */
+		public Entry(Entry other)
+		{
+			this.vehicle = new Vehicle(other.vehicle) {};
+			this.image = other.image;
+			this.id = other.id;
 		}
 	}
 	
@@ -53,6 +65,77 @@ public class AgencyManager
 	
 	private float total_distance;
 	
+	private final int max_backups = 3;
+	private SizedStack<AgencyManager> backups;
+	
+	
+	/**
+	 * Method for saving a backup of the AgencyManager.
+	 * 
+	 * @return amount of backups left.
+	 */
+	public int backup_save()
+	{
+		backups.push(new AgencyManager(this));
+		
+		return backups.size();
+	}
+	
+	/**
+	 * Method for loading a backup of the AgencyManager.
+	 * 
+	 * @return amount of backups left.
+	 */
+	public int backup_load()
+	{
+		if (backups.size() == 0)
+			return -1;
+		
+		AgencyManager backup = backups.pop();
+		reset_status(backup);
+		
+		data = new Vector<Entry>();
+		for (Entry entry : backup.data)
+			data.add(new Entry(entry));
+		
+		service = new EventService(backup.service);
+		driver_pool = Executors.newFixedThreadPool(drivers_count);
+		free_drivers = drivers_count;
+		total_distance = backup.total_distance;
+		
+		return backups.size();
+	}
+	
+	/**
+	 * Method for resetting all vehicles status inside an AgencyManager.
+	 * 
+	 * @param db the AgencyManager that requires a reset.
+	 */
+	private void reset_status(AgencyManager db)
+	{
+		for (Entry entry : db.data)
+		{
+			entry.vehicle.SetStatus(VehicleStatus.AVAILABLE);
+		}
+	}
+	
+	/**
+	 * Copy constructor for AgencyManager class.
+	 * 
+	 * @param other the copied AgencyManager.
+	 */
+	private AgencyManager(AgencyManager other)
+	{
+		data = new Vector<Entry>();
+		for (Entry entry : other.data)
+			data.add(new Entry(entry));
+		
+		service = new EventService(other.service);
+		driver_pool = Executors.newFixedThreadPool(drivers_count);
+		free_drivers = drivers_count;
+		total_distance = other.total_distance;
+	}
+	
 	/**
 	 * Constructor for AgencyManager class.
 	 */
@@ -63,6 +146,8 @@ public class AgencyManager
 		driver_pool = Executors.newFixedThreadPool(drivers_count);
 		free_drivers = drivers_count;
 		total_distance = 0;
+		
+		backups = new SizedStack<AgencyManager>(max_backups);
 	}
 	
 	/**
